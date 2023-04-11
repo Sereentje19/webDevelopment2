@@ -9,7 +9,6 @@ use Firebase\JWT\Key;
 use Services\UserService;
 
 
-
 class UserController extends Controller
 {
     private $service;
@@ -20,29 +19,49 @@ class UserController extends Controller
         $this->service = new UserService();
     }
 
-    public function login()
-    {
+    // public function login2()
+    // {
+    //     // read user data from request body
+    //     $json = file_get_contents('php://input');
+    //     $data = json_decode($json);
+
+    //     // get user from db
+    //     $user = $this->service->checkUsernamePassword($data->username, $data->password);
+
+    //     // if the method returned false, the username and/or password were incorrect
+    //     if (!$user) {
+    //         $this->respondWithError(401, "Incorrect password");
+    //     }
+
+    //     // generate jwt
+    //     $key = 'chat.openai.com';
+    //     $payload = [
+    //         'username' => $user->username,
+    //     ];
+    //     $jwt = JWT::encode($payload, $key, 'HS256');
+
+    //     // return jwt
+    //     $this->respond(array("token" => $jwt));
+    // }
+
+    public function login() {
+
         // read user data from request body
-        $json = file_get_contents('php://input');
-        $data = json_decode($json);
+        $postedUser = $this->createObjectFromPostedJson("Models\\User");
 
         // get user from db
-        $user = $this->service->checkUsernamePassword($data->username, $data->password);
+        $user = $this->service->checkUsernamePassword($postedUser->username, $postedUser->password);
 
         // if the method returned false, the username and/or password were incorrect
-        if (!$user) {
-            $this->respondWithError(401, "Incorrect password");
+        if(!$user) {
+            $this->respondWithError(401, "Invalid login");
+            return;
         }
 
         // generate jwt
-        $key = 'chat.openai.com';
-        $payload = [
-            'username' => $user->username,
-        ];
-        $jwt = JWT::encode($payload, $key, 'HS256');
+        $tokenResponse = $this->generateJwt($user);       
 
-        // return jwt
-        $this->respond(array("token" => $jwt));
+        $this->respond($tokenResponse);    
     }
 
     public function generateJwt($user) {
