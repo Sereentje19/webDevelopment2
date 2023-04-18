@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import Navigation from './components/Navigation.vue'
+import Navigation from './components/quizes/Navigation.vue'
 
 export default {
-  name: "App",
+  name: "app",
   components: {
     Navigation
   }
