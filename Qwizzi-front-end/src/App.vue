@@ -1,17 +1,9 @@
 <template>
-  <navigation />
   <router-view />
-</template>
+</template> 
 
-<script>
-import Navigation from './components/quizes/Navigation.vue'
+ <script>
 
-export default {
-  name: "app",
-  components: {
-    Navigation
-  }
-};
 </script>
 
 <style>
