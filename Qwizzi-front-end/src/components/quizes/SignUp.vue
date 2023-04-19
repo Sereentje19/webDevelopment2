@@ -1,26 +1,29 @@
 <template>
-    <form action="action_page.php" method="post">
-        <div id="logIn" width="100%">
+    <div id="signU" width="100%">
+        <div class="containerSignUp">
 
-            <div class="container">
-                <label id="uname" for="uname"><b>Username</b></label>
-                <input id="unameInput" type="text" placeholder="Enter Username" name="uname" required>
-
-                <label id="email" for="email"><b>Email address</b></label>
-                <input id="emailInput" type="text" placeholder="Enter email" name="email" required>
-
-                <label id="psw" for="psw"><b>Password</b></label>
-                <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
-
-                <label id="psw" for="psw"><b>Confirm password</b></label>
-                <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
+            <div class="divBtns">
+                <p id="name">Sign up</p>
             </div>
 
-            <div class="container">
+            <label id="uname" for="uname"><b>Username</b></label>
+            <input id="unameInput" type="text" placeholder="Enter Username" name="uname" required>
+
+            <label id="email" for="email"><b>Email address</b></label>
+            <input id="emailInput" type="text" placeholder="Enter email" name="email" required>
+
+            <label id="psw" for="psw"><b>Password</b></label>
+            <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
+
+            <label id="psw" for="psw"><b>Confirm password</b></label>
+            <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
+
+            <div class="divBtns">
                 <button class="SignUp" type="submit">Sign up</button>
             </div>
+
         </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -30,6 +33,38 @@ export default {
 </script>
 
 <style>
+
+
+#signU {
+    margin-top: 100px;
+}
+
+.containerSignUp {
+    padding: 50px 100px 50px 100px;
+    background-color: rgb(144, 116, 151);
+    border-radius: 1000px;
+}
+
+#signU,
+.imgcontainer,
+.containerSignUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgcontainer,
+.containerSignUp {
+    width: fit-content;
+}
+
+
+
+.divBtns {
+    display: flex;
+    justify-content: center;
+}
+
 .SignUp:hover,
 .SignUp {
     margin-top: 30px;
@@ -47,19 +82,6 @@ export default {
 .SignUp:hover {
     background-color: rgb(255, 244, 255);
     color: rgb(89, 0, 89);
-}
-
-#logIn,
-.imgcontainer,
-.container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-.imgcontainer,
-.container {
-    width: fit-content;
 }
 
 #uname,
@@ -83,5 +105,4 @@ export default {
     padding: 15px 20px 15px 20px;
     font-size: 25px;
 }
-
 </style>
