@@ -1,20 +1,38 @@
 <template>
-    <section>
             
-  <navigation />
+  <headerNavigation />
+  <body>
         <p>
-            hallo dit is een test
+          hallo hallo dit is een test
         </p>
-    </section>
+  </body>
+    <footerNavigation />
 </template>
 
 <script>
-import Navigation from '../quizes/Navigation.vue'
+import headerNavigation from './Header.vue'
+import footerNavigation from './Footer.vue';
 
 export default {
-  name: "app",
-  components: {
-    Navigation
+    header: {
+    name: "header",
+    components: {
+        headerNavigation
+    }
+  },
+  footer: {
+    name: "footer",
+    components: {
+        footerNavigation
+    }
   }
 };
 </script>
+
+
+<style>
+body {
+  background-color: rgb(255, 237, 237);
+  min-height: 554px; 
+}
+</style>

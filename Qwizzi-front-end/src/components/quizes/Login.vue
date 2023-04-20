@@ -15,12 +15,21 @@
             </div>
         </div>
     </div>
+    <FooterNavigation/>
 </template>
 
 <script>
+import FooterNavigation from './Footer.vue'
+// import FooterNavigation from '../quizes/FooterNavigation.vue';
+
 export default {
-    name: "Login",
+  name: "footer",
+  components: {
+    FooterNavigation
+  }
 };
+
+
 </script>
 
 <style>
@@ -79,7 +88,7 @@ export default {
 
 .container {
     padding: 55px;
-    background-color: rgb(130, 105, 137);
+    background-color: rgb(245, 200, 0);
     border-radius: 400px;
 }
 

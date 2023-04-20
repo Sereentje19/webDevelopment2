@@ -11,17 +11,23 @@
 
     </div>
   </div>
+  <div id="divie"></div>
 </template>
 
 <script>
 export default {
-  name: "Navigation",
+  name: "header",
 };
 </script>
 
 <style>
+#divie{
+  height: 150px;
+}
+
 body {
-  background-color: rgb(223, 207, 162);
+  background-color: rgb(255, 237, 237);
+  
 }
 
 #logo {
@@ -29,9 +35,11 @@ body {
 }
 
 #header {
+  background-color: rgb(211, 52, 52);
   display: flex;
-  /* margin-top: -420px; */
   padding: 20px;
+  position:fixed;
+  width: 100%;
 }
 
 .navbar {

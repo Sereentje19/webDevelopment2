@@ -26,11 +26,6 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "SignUp",
-};
-</script>
 
 <style>
 
@@ -41,8 +36,9 @@ export default {
 
 .containerSignUp {
     padding: 50px 100px 50px 100px;
-    background-color: rgb(144, 116, 151);
+    background-color: rgb(245, 200, 0);
     border-radius: 1000px;
+    margin: 0 auto 0 auto;
 }
 
 #signU,
@@ -50,7 +46,6 @@ export default {
 .containerSignUp {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .imgcontainer,
