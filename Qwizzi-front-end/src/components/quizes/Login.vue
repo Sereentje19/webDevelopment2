@@ -11,25 +11,27 @@
             <input id="pswInputLogin" type="password" placeholder="Enter Password" name="psw" required>
 
             <div class="divBtns">
-                <button class="loginBtn" type="submit">Login</button>
+                <button @click="Login()" class="loginBtn" type="button">Login</button>
             </div>
         </div>
     </div>
-    <FooterNavigation/>
 </template>
 
+
 <script>
-import FooterNavigation from './Footer.vue'
-// import FooterNavigation from '../quizes/FooterNavigation.vue';
+import axios from 'axios';
+
 
 export default {
-  name: "footer",
-  components: {
-    FooterNavigation
-  }
-};
-
-
+    methods: {
+        login() {
+            axios.post("users", {
+                username: this.username,
+                password: this.password,
+            })
+        },
+    }
+}
 </script>
 
 <style>

@@ -11,7 +11,7 @@ import './assets/main.css'
 const app = createApp(App)
 
 app.component('headerNavigation', header)
-app.component('FooterNavigation', footer)
+app.component('footerNavigation', footer)
 
 app.use(createPinia())
 app.use(router)
