@@ -5,13 +5,56 @@ namespace Repositories;
 use PDO;
 use PDOException;
 use Repositories\Repository;
-require_once __DIR__ . '/../models/Users.php';
+
+// require_once __DIR__ . '/../models/Users.php';
 
 class UsersRepository extends Repository
 {
-    public function getAll(){
+    function checkUsernamePassword($username, $password)
+    {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM Users as US");
+            // retrieve the user with the given username
+            $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :username AND password = :password");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Users');
+            $user = $stmt->fetch();
+
+            // verify if the password matches the hash in the database
+            // $result = $this->verifyPassword($password, $user->password);
+
+            // if ($password != $user->password) {
+                // $result = false;
+            // }
+
+            // if (!$result)
+                // return false;
+
+            // do not pass the password hash to the caller
+            // $user->password = "";
+
+            return $user;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+    // hash the password (currently uses bcrypt)
+    function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    // verify the password hash
+    function verifyPassword($input, $hash)
+    {
+        return password_verify($input, $hash);
+    }
+    public function getAll()
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM Users");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Users');
             $users = $stmt->fetchAll();

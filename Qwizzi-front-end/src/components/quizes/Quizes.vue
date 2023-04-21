@@ -7,7 +7,10 @@
             <h1>Quizes</h1>
             <button class="CreateQuiz btn">Create quiz</button>
         </div>
+        <div>
 
+
+        </div>
         <div id="quizContainer" width="100%">
             <!-- <li class="list-group-item" v-for="user in users"> {{ user.username }} </li> -->
 
@@ -45,7 +48,7 @@
                 <button class="quizBtn btn">go to quiz</button>
             </div>
 
-            <div v-if="3 == 4" id="quiz">
+            <div v-if=" 3 == 4 " id="quiz">
                 <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
                 haai haai
             </div>
@@ -57,9 +60,12 @@
     <footerNavigation />
 </template>
 
+
 <script>
+
 import headerNavigation from './Header.vue'
 import footerNavigation from './Footer.vue';
+import axios from '../../axios-auth.js';
 
 export default {
     header: {
@@ -72,8 +78,19 @@ export default {
         name: "footer",
         components: {
             footerNavigation
-        }
-    }
+        },
+    },
+
+    methods: {
+        mounted() {
+            axios
+                .get('quizes')
+                .then((res) => {
+                    this.quizes = res.data;
+                })
+                .catch(error => console.log(error))
+        },
+    },
 };
 </script>
 
@@ -149,4 +166,5 @@ export default {
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-}</style>
+}
+</style>

@@ -20,7 +20,9 @@ class UsersService {
         return $this->repository->insert($user);
     }
 
-    
+    public function checkUsernamePassword($username, $password){
+        return $this->repository->checkUsernamePassword($username, $password);
+    }
 }
 
 ?>

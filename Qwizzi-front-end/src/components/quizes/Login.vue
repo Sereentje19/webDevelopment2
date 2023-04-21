@@ -5,22 +5,20 @@
                 <p id="name">Login</p>
             </div>
             <label id="unameLogin" for="uname"><b>Username</b></label>
-            <input id="unameInputLogin" type="text" placeholder="Enter Username" name="uname" required>
+            <input v-model="username" id="unameInputLogin" type="text" placeholder="Enter Username" name="uname" required>
 
             <label id="pswLogin" for="psw"><b>Password</b></label>
-            <input id="pswInputLogin" type="password" placeholder="Enter Password" name="psw" required>
+            <input v-model="password" id="pswInputLogin" type="password" placeholder="Enter Password" name="psw" required>
 
             <div class="divBtns">
-                <button @click="Login()" class="loginBtn" type="button">Login</button>
+                <button @click="login()" class="loginBtn" type="button">Login</button>
             </div>
         </div>
     </div>
 </template>
 
-
 <script>
-import axios from 'axios';
-
+import axios from '../../axios-auth.js';
 
 export default {
     methods: {
@@ -28,14 +26,16 @@ export default {
             axios.post("users", {
                 username: this.username,
                 password: this.password,
-            })
+            }).then((res) => {
+                    this.$router.push("/");
+                })
+        .catch((error) => console.log(error));
         },
     }
 }
 </script>
 
 <style>
-
 #logIn,
 .imgcontainer,
 .container {

@@ -14,10 +14,20 @@ class UsersController extends Controller{
     {
         $this->service = new UsersService();
     }
-    public function getAll()
+    public function login()
     {
-        $products = $this->service->getAll();
-        $this->respond($products);
+        $data = $this->createObjectFromPostedJson("Models\\Users");
+        $user = $this->service->checkUsernamePassword($data->username, $data->password);
+
+        if(count($user) == 0)
+        {
+            
+        }
+
+        if (!$user) {
+            $this->respondWithError(401, "Incorrect password");
+        }
+
     }
 
     public function create(){

@@ -14,23 +14,15 @@ $router = new \Bramus\Router\Router();
 $router->setNamespace('Controllers');
 
 // routes for the Users endpoint
-$router->get('/users', 'UsersController@getAll');
+$router->get('/users', 'UsersController@login');
 $router->post('/users', 'UsersController@create');
 
+// routes for the Quizes endpoint
+$router->get('/quizes', 'QuizController@getAll');
+$router->post('/quizes', 'QuizController@create');
 
-// $router->get('/users/(\d+)', 'ProductController@getOne');
 // $router->put('/products/(\d+)', 'ProductController@update');
 // $router->delete('/products/(\d+)', 'ProductController@delete');
-
-// routes for the categories endpoint
-// $router->get('/categories', 'CategoryController@getAll');
-// $router->get('/categories/(\d+)', 'CategoryController@getOne');
-// $router->post('/categories', 'CategoryController@create');
-// $router->put('/categories/(\d+)', 'CategoryController@update');
-// $router->delete('/categories/(\d+)', 'CategoryController@delete');
-
-// routes for the users endpoint
-// $router->post('/users/login', 'UserController@login');
 
 // Run it!
 $router->run();
