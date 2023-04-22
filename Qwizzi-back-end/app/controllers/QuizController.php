@@ -24,6 +24,11 @@ class QuizController extends Controller{
 
         $this->respond($quizes);
     }
+    public function getOne($id){
+        $quizes = $this->service->getOne($id);
+
+        $this->respond($quizes);
+    }
 
     public function create(){
         try {

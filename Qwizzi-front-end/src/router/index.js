@@ -14,7 +14,7 @@ const router = createRouter({
     { path: '/Login', component: Login },
     { path: '/SignUp', component: SignUp },
     { path: '/Quizes', component: Quizes },
-    { path: '/Quiz', component: Quiz },
+    { path: '/Quiz/:id', component: Quiz, props: true },
     { path: '/EnterCode', component: EnterCode }
   ]
 })

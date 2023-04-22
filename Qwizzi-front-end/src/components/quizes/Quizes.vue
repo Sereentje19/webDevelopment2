@@ -7,31 +7,19 @@
             <h1>Quizes</h1>
             <button class="CreateQuiz btn">Create quiz</button>
         </div>
-        <div>
-
-
-        </div>
+        
         <div id="quizContainer" width="100%">
-            <!-- <li class="list-group-item" v-for="user in users"> {{ user.username }} </li> -->
+            <li v-for="quiz in quizes">
+                <div id="quiz" width="30%">
+                    <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
+                    <h2>{{ quiz.title }}</h2>
+                    <p id="textQuiz"> {{ quiz.text }}</p>
+                    <a @click="goToQuiz(quiz.id)" class="quizBtn btn">go to quiz</a>
+                </div>
+            </li>
+        </div>
 
-            <div id="quiz" width="30%">
-                <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
-                <h2>Title</h2>
-                <p id="textQuiz"> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai</p>
-                <a href="/Quiz" class="quizBtn btn">go to quiz</a>
-            </div>
-
-            <div id="quiz" width="30%">
-                <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
-                <h2>Title</h2>
-                <p id="textQuiz"> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai</p>
-                <button class="quizBtn btn">go to quiz</button>
-            </div>
-            <div id="quiz" width="30%">
+            <!-- <div id="quiz" width="30%">
                 <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
                 <h2>Title</h2>
                 <p id="textQuiz"> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai
@@ -48,12 +36,11 @@
                 <button class="quizBtn btn">go to quiz</button>
             </div>
 
-            <div v-if=" 3 == 4 " id="quiz">
+            <div v-if="3 == 4" id="quiz">
                 <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
                 haai haai
-            </div>
+            </div> -->
 
-        </div>
 
     </body>
 
@@ -80,17 +67,24 @@ export default {
             footerNavigation
         },
     },
-
-    methods: {
-        mounted() {
-            axios
-                .get('quizes')
-                .then((res) => {
-                    this.quizes = res.data;
-                })
-                .catch(error => console.log(error))
-        },
+    data() {
+        return {
+            quizes: [],
+        };
     },
+    mounted() {
+        axios
+            .get('quizes')
+            .then((res) => {
+                this.quizes = res.data;
+            })
+            .catch(error => console.log(error))
+    },
+    methods: {
+    goToQuiz(id) {
+      this.$router.push("Quiz/" + id);
+    },
+  },
 };
 </script>
 

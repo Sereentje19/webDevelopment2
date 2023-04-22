@@ -28,6 +28,21 @@ class QuizRepository extends Repository
         }
     }
 
+    public function getOne($id)
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT id, userId, title, text FROM Quizes WHERE id = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Quizes');
+            $quizes = $stmt->fetchAll();
+
+            return $quizes;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
     function insert($quiz)
     {
         $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 

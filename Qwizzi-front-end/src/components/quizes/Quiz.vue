@@ -6,11 +6,11 @@
             <img id="logoQ" src="/images/logo.png" alt="Image is not shown">
 
             <div id="text">
-                <h1>Title</h1>
-                <p> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai haaihaai
-                    haaihaai
-                    haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai</p>
-                <button class="Play btn">Play</button>
+                <li v-for="q in quiz">
+                    <h1>{{ q.title }}</h1>
+                    <p> {{ q.text }}</p>
+                    <button class="Play btn">Play</button>
+                </li>
             </div>
         </div>
 
@@ -21,6 +21,7 @@
 <script>
 import headerNavigation from './Header.vue'
 import footerNavigation from './Footer.vue';
+import axios from '../../axios-auth.js';
 
 export default {
     header: {
@@ -34,14 +35,27 @@ export default {
         components: {
             footerNavigation
         }
-    }
+    },
+    data() {
+    return {
+      quiz: [],
+    };
+  },
+    mounted() {
+        axios
+            .get('quizes/' + this.id)
+            .then((res) => {
+                this.quiz = res.data;
+            })
+            .catch(error => console.log(error))
+    },
 };
 </script>
 
 <style>
 body {
-  background-color: rgb(255, 237, 237);
-  min-height: 570px; 
+    background-color: rgb(255, 237, 237);
+    min-height: 570px;
 }
 
 .Play:hover,
