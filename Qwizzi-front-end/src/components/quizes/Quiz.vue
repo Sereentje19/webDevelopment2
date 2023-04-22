@@ -6,11 +6,11 @@
             <img id="logoQ" src="/images/logo.png" alt="Image is not shown">
 
             <div id="text">
-                <li v-for="q in quiz">
+                <ul v-for="q in quiz">
                     <h1>{{ q.title }}</h1>
                     <p> {{ q.text }}</p>
                     <button class="Play btn">Play</button>
-                </li>
+                </ul>
             </div>
         </div>
 
@@ -36,11 +36,20 @@ export default {
             footerNavigation
         }
     },
+    name: "Quiz",
+    props: {
+        id: Number,
+    },
     data() {
-    return {
-      quiz: [],
-    };
-  },
+        return {
+            quiz: {
+                id: 0,
+                userId: 0,
+                title: "",
+                text: "",
+            },
+        };
+    },
     mounted() {
         axios
             .get('quizes/' + this.id)
@@ -53,6 +62,12 @@ export default {
 </script>
 
 <style>
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 body {
     background-color: rgb(255, 237, 237);
     min-height: 570px;

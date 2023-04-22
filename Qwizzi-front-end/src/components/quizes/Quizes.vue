@@ -9,14 +9,14 @@
         </div>
         
         <div id="quizContainer" width="100%">
-            <li v-for="quiz in quizes">
+            <ul v-for="quiz in quizes">
                 <div id="quiz" width="30%">
                     <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
                     <h2>{{ quiz.title }}</h2>
                     <p id="textQuiz"> {{ quiz.text }}</p>
                     <a @click="goToQuiz(quiz.id)" class="quizBtn btn">go to quiz</a>
                 </div>
-            </li>
+            </ul>
         </div>
 
             <!-- <div id="quiz" width="30%">
@@ -90,6 +90,12 @@ export default {
 
 
 <style>
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .CreateQuiz:hover,
 .CreateQuiz {
     border-radius: 50px;
