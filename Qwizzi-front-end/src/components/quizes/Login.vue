@@ -2,16 +2,16 @@
     <div id="logIn" width="100%">
         <div class="container">
             <div class="divBtns">
-                <p id="name">Login</p>
+                <p class="name">Login</p>
             </div>
-            <label id="unameLogin" for="uname"><b>Username</b></label>
-            <input v-model="username" id="unameInputLogin" type="text" placeholder="Enter Username" name="uname" required>
+            <label class="letterType" id="letterType2"><b>Username</b></label>
+            <input v-model="username" class="inputFields" type="text" placeholder="Enter username" required>
 
-            <label id="pswLogin" for="psw"><b>Password</b></label>
-            <input v-model="password" id="pswInputLogin" type="password" placeholder="Enter Password" name="psw" required>
+            <label class="letterType" id="letterType2"><b>Password</b></label>
+            <input v-model="password" class="inputFields" type="password" placeholder="Enter password" required>
 
-            <div class="divBtns">
-                <button @click="login()" class="loginBtn" type="button">Login</button>
+            <div class="divBtn">
+                <button @click="login()" class="mainButton" type="button">Login</button>
             </div>
         </div>
     </div>
@@ -27,62 +27,28 @@ export default {
                 username: this.username,
                 password: this.password,
             }).then((res) => {
-                    this.$router.push("/");
-                })
-        .catch((error) => console.log(error));
+                this.$router.push("/");
+            })
+                .catch((error) => console.log(error));
         },
     }
 }
 </script>
 
 <style>
-#logIn,
-.imgcontainer,
-.container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+#letterType2 {
+    margin-top: 50px;
 }
 
 .imgcontainer,
 .container {
     width: fit-content;
-}
-
-#name {
-    align-content: center;
-    color: rgb(89, 0, 89);
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.divBtns {
     display: flex;
-    justify-content: center;
-}
-
-.loginBtn:hover,
-.loginBtn {
-    margin-top: 40px;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 35px;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(255, 240, 255);
-    border-color: rgb(89, 0, 89);
-    color: rgb(89, 0, 89);
-    font-weight: bold;
-    width: 150px;
+    flex-direction: column;
     align-content: center;
 }
 
 
-
-.loginBtn:hover {
-    background-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-}
 
 #logIn {
     margin-top: 100px;
@@ -92,26 +58,5 @@ export default {
     padding: 55px;
     background-color: rgb(245, 200, 0);
     border-radius: 400px;
-}
-
-
-#unameLogin,
-#pswLogin {
-    margin-top: 30px;
-    color: white;
-    margin-right: 20px;
-    font-weight: bold;
-    font-size: 40px;
-    text-shadow: -1.3px 1.3px 0 rgb(89, 0, 89), 1.3px 1.3px 0 rgb(89, 0, 89),
-        1.3px -1.3px 0 rgb(89, 0, 89), -1.3px -1.3px 0 rgb(89, 0, 89);
-}
-
-#unameInputLogin,
-#pswInputLogin {
-    width: 500px;
-    height: 65px;
-    border-radius: 100px;
-    padding: 15px 20px 15px 20px;
-    font-size: 25px;
 }
 </style>

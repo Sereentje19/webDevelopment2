@@ -3,15 +3,8 @@
 
     <body>
         <div id="QuizContainer">
-            <img id="logoQ" src="/images/logo.png" alt="Image is not shown">
 
-            <div id="text">
-                <ul v-for="q in quiz">
-                    <h1>{{ q.title }}</h1>
-                    <p> {{ q.text }}</p>
-                    <a href="/PlayQuiz" class="Play btn">Play</a>
-                </ul>
-            </div>
+            
         </div>
     </body>
     <footerNavigation />

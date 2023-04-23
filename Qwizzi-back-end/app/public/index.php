@@ -15,16 +15,16 @@ $router->setNamespace('Controllers');
 
 // routes for the Users endpoint
 $router->get('/users', 'UsersController@login');
-$router->post('/users', 'UsersController@create');
+$router->post('/users', 'UsersController@createUser');
 
 // routes for the Quizes endpoint
 $router->get('/quizes', 'QuizController@getAllQuizes');
 $router->post('/quizes', 'QuizController@createQuiz');
-$router->get('/quizes/(\d+)', 'QuizController@getOne');
+$router->get('/quizes/(\d+)', 'QuizController@getOneQuiz');
 
 // routes for the Questions endpoint
 $router->get('/questions', 'QuizController@getAllQuestions');
-$router->post('/questions', 'QuizController@createQuestions');
+$router->post('/questions', 'QuizController@createQuestion');
 
 // $router->put('/products/(\d+)', 'ProductController@update');
 // $router->delete('/products/(\d+)', 'ProductController@delete');

@@ -9,7 +9,7 @@
                 <ul v-for="q in quiz">
                     <h1>{{ q.title }}</h1>
                     <p> {{ q.text }}</p>
-                    <a href="/PlayQuiz" class="Play btn">Play</a>
+                    <a @click="goToQuiz(q.id)" class="Play btn">Play</a>
                 </ul>
             </div>
         </div>
@@ -56,6 +56,11 @@ export default {
                 this.quiz = res.data;
             })
             .catch(error => console.log(error))
+    },
+    methods: {
+        goToQuiz(id) {
+      this.$router.push("PlayQuiz/" + id);
+    },
     },
 };
 </script>

@@ -3,23 +3,23 @@
         <div class="containerSignUp">
 
             <div class="divBtns">
-                <p id="name">Sign up</p>
+                <p class="name">Sign up</p>
             </div>
 
-            <label id="uname" for="uname"><b>Username</b></label>
-            <input id="unameInput" type="text" placeholder="Enter Username" name="uname" required>
+            <label class="letterType" for="uname"><b>Username</b></label>
+            <input class="inputFields" type="text" placeholder="Enter Username" name="uname" required>
 
-            <label id="email" for="email"><b>Email address</b></label>
-            <input id="emailInput" type="text" placeholder="Enter email" name="email" required>
+            <label class="letterType" for="email"><b>Email address</b></label>
+            <input class="inputFields" type="text" placeholder="Enter email" name="email" required>
 
-            <label id="psw" for="psw"><b>Password</b></label>
-            <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
+            <label class="letterType" for="psw"><b>Password</b></label>
+            <input class="inputFields" type="password" placeholder="Enter Password" name="psw" required>
 
-            <label id="psw" for="psw"><b>Confirm password</b></label>
-            <input id="pswInput" type="password" placeholder="Enter Password" name="psw" required>
+            <label class="letterType" for="psw"><b>Confirm password</b></label>
+            <input class="inputFields" type="password" placeholder="Enter Password" name="psw" required>
 
-            <div class="divBtns">
-                <button class="SignUp" type="submit">Sign up</button>
+            <div class="divBtn">
+                <button class="mainButtonReverse" type="submit">Sign up</button>
             </div>
 
         </div>
@@ -28,8 +28,6 @@
 
 
 <style>
-
-
 #signU {
     margin-top: 50px;
 }
@@ -41,63 +39,17 @@
     margin: 0 auto 0 auto;
 }
 
-#signU,
-.imgcontainer,
-.containerSignUp {
-    display: flex;
-    flex-direction: column;
-}
-
 .imgcontainer,
 .containerSignUp {
     width: fit-content;
-}
-
-
-
-.divBtns {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
-
-.SignUp:hover,
-.SignUp {
-    margin-top: 30px;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 35px;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(89, 0, 89);
-    border-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-    font-weight: bold;
-}
-
-.SignUp:hover {
-    background-color: rgb(255, 244, 255);
-    color: rgb(89, 0, 89);
-}
-
-#uname,
-#psw,
-#email {
+.letterType{
     margin-top: 10px;
-    color: white;
-    margin-right: 20px;
-    font-weight: bold;
-    font-size: 30px;
-    text-shadow: -1.3px 1.3px 0 rgb(89, 0, 89), 1.3px 1.3px 0 rgb(89, 0, 89),
-        1.3px -1.3px 0 rgb(89, 0, 89), -1.3px -1.3px 0 rgb(89, 0, 89);
 }
 
-#unameInput,
-#pswInput,
-#emailInput {
-    width: 500px;
-    height: 55px;
-    border-radius: 100px;
-    padding: 15px 20px 15px 20px;
-    font-size: 25px;
+.letterType {
+    margin-top: 10px;
 }
 </style>

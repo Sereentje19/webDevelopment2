@@ -18,7 +18,7 @@ const router = createRouter({
     { path: '/Quizes', component: Quizes },
     { path: '/QuizOverview/:id', component: QuizOverview, props: true },
     { path: '/CreateQuiz', component: CreateQuiz },
-    { path: '/PlayQuiz', component: PlayQuiz },
+    { path: '/QuizOverview/PlayQuiz/:id', component: PlayQuiz },
     { path: '/EnterCode', component: EnterCode }
   ]
 })

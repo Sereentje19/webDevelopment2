@@ -49,7 +49,7 @@ class UsersRepository extends Repository
     {
         return password_verify($input, $hash);
     }
-    public function getAll()
+    public function getAllUsers()
     {
         try {
             $stmt = $this->connection->prepare("SELECT * FROM Users");
@@ -63,7 +63,7 @@ class UsersRepository extends Repository
         }
     }
 
-    function insert($user)
+    function createUser($user)
     {
         //inser the user into the table users and return the user
         $stmt = $this->connection->prepare("INSERT into Users (username, email, password) 

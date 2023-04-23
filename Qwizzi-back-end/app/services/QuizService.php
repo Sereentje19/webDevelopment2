@@ -11,22 +11,14 @@ class QuizService {
     {
         $this->repository = new QuizRepository();
     }
-
     public function getAllQuizes(){
         return $this->repository->getAllQuizes();
     }
-    public function getAllQuestions(){
-        return $this->repository->getAllQuestions();
+    public function getOneQuiz($id){
+        return $this->repository->getOneQuiz($id);
     }
-    public function getOne($id){
-        return $this->repository->getOne($id);
-    }
-    public function insertQuiz($quiz){
-        return $this->repository->insertQuiz($quiz);
-    }
-
-    public function insertQuestions($quizId, $questions){
-        return $this->repository->insertQuestions($quizId, $questions);
+    public function createQuiz($quiz){
+        return $this->repository->createQuiz($quiz);
     }
   
 }

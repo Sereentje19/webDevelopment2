@@ -19,3 +19,77 @@ h2 {
     float: left;
   }
 }
+
+/* button stylen */
+.divBtn {
+  display: flex;
+  justify-content: center;
+}
+
+/* titel  */
+.name {
+  color: rgb(89, 0, 89);
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+/* letters paars */
+.letterType {
+    color: rgb(89, 0, 89);
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* input fields  */
+.inputFields {
+    width: 500px;
+    height: 50px;
+    border-radius: 100px;
+    padding: 15px 20px 15px 20px;
+    font-size: 25px;
+}
+
+/* wit hover paars button */
+.mainButton:hover,
+.mainButton {
+    margin-top: 40px;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 3px;
+    font-size: 35px;
+    padding: 2px 20px 2px 20px;
+    background-color: rgb(255, 240, 255);
+    border-color: rgb(89, 0, 89);
+    color: rgb(89, 0, 89);
+    font-weight: bold;
+    width: 150px;
+    align-content: center;
+}
+
+.mainButton:hover {
+    background-color: rgb(89, 0, 89);
+    color: rgb(255, 244, 255);
+}
+
+/* paars hover wit button */
+.mainButtonReverse:hover,
+.mainButtonReverse {
+    margin-top: 30px;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 3px;
+    font-size: 35px;
+    padding: 2px 20px 2px 20px;
+    background-color: rgb(89, 0, 89);
+    border-color: rgb(89, 0, 89);
+    color: rgb(255, 244, 255);
+    font-weight: bold;
+}
+
+.mainButtonReverse:hover {
+    background-color: rgb(255, 244, 255);
+    color: rgb(89, 0, 89);
+}

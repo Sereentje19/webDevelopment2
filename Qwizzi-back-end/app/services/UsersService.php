@@ -11,13 +11,8 @@ class UsersService {
     {
         $this->repository = new UsersRepository();
     }
-
-    public function getAll(){
-        return $this->repository->getAll();
-    }
-
-    public function insert($user){
-        return $this->repository->insert($user);
+    public function createUser($user){
+        return $this->repository->createUser($user);
     }
 
     public function checkUsernamePassword($username, $password){

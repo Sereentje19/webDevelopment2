@@ -30,10 +30,10 @@ class UsersController extends Controller{
 
     }
 
-    public function create(){
+    public function createUser(){
         try {
             $user = $this->createObjectFromPostedJson("Models\\Users");
-            $user = $this->service->insert($user);
+            $user = $this->service->createUser($user);
 
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
