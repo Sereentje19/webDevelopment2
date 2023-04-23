@@ -33,6 +33,7 @@ class QuizController extends Controller{
     public function create(){
         try {
             $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
+            // $questions = $this->createObjectFromPostedJson("Models\\Questions");
             $quiz = $this->service->insert($quiz);
 
         } catch (Exception $e) {

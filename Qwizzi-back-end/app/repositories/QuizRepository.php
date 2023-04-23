@@ -45,11 +45,16 @@ class QuizRepository extends Repository
 
     function insert($quiz)
     {
-        $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 
+        $quiz->image = "";
+        $quiz->userId = 1;
+        $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image,  title, text) 
         VALUES (?,?,?,?)");
         $stmt->execute([$quiz->userId, $quiz->image, $quiz->title, $quiz->text]);
 
         $quiz->id = $this->connection->lastInsertId();
+        // $stmt = $this->connection->prepare("INSERT INTO Questions (quizId, question, correctAnswer, answer2, answer3, answer4) 
+        // VALUES (?,?,?)");
+        // $stmt->execute([$questions->quizId, $questions->question, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
         return $quiz;
     }
     private function getImageBase64($imageData)

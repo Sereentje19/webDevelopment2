@@ -5,7 +5,7 @@
     <body>
         <div class="headerQuizes d-flex">
             <h1>Quizes</h1>
-            <button class="CreateQuiz btn">Create quiz</button>
+            <a href="/CreateQuiz"  class="CreateQuiz btn">Create quiz</a>
         </div>
         
         <div id="quizContainer" width="100%">
@@ -18,29 +18,6 @@
                 </div>
             </ul>
         </div>
-
-            <!-- <div id="quiz" width="30%">
-                <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
-                <h2>Title</h2>
-                <p id="textQuiz"> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai</p>
-                <button class="quizBtn btn">go to quiz</button>
-            </div>
-            <div id="quiz" width="30%">
-                <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
-                <h2>Title</h2>
-                <p id="textQuiz"> haaihaai aai haai aai haai haai haai haai haaihaai haaihaai aai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai haaihaai
-                    haaihaai haaihaai</p>
-                <button class="quizBtn btn">go to quiz</button>
-            </div>
-
-            <div v-if="3 == 4" id="quiz">
-                <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
-                haai haai
-            </div> -->
-
 
     </body>
 
