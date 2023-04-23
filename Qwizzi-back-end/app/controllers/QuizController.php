@@ -9,12 +9,13 @@ use Services\QuizService;
 class QuizController extends Controller{
     
     private $service;
+    private $quizId = 1;
 
     function __construct()
     {
         $this->service = new QuizService();
     }
-    public function getAll()
+    public function getAllQuizes()
     {
         $quizes = $this->service->getAllQuizes();
 
@@ -24,23 +25,34 @@ class QuizController extends Controller{
 
         $this->respond($quizes);
     }
+    public function getAllQuestions()
+    {
+        $questions = $this->service->getAllQuestions();
+
+        $this->respond($questions);
+    }
     public function getOne($id){
         $quizes = $this->service->getOne($id);
 
         $this->respond($quizes);
     }
 
-    public function create(){
+    public function createQuiz(){
         try {
             $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
-            // $questions = $this->createObjectFromPostedJson("Models\\Questions");
-            $quiz = $this->service->insert($quiz);
+            $this->quizId = $this->service->insertQuiz($quiz);
 
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
         }
 
         $this->respond($quiz);
+    }
+
+    public function createQuestions(){
+        $question = $this->createObjectFromPostedJson("Models\\Questions");
+        $this->service->insertQuestions($this->quizId, $question);
+
     }
     
 }

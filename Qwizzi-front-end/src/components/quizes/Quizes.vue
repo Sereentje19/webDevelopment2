@@ -8,15 +8,17 @@
             <a href="/CreateQuiz"  class="CreateQuiz btn">Create quiz</a>
         </div>
         
-        <div id="quizContainer" width="100%">
+        <div id="quizContainer">
             <ul v-for="quiz in quizes">
-                <div id="quiz" width="30%">
+                <div id="quiz">
                     <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
                     <h2>{{ quiz.title }}</h2>
                     <p id="textQuiz"> {{ quiz.text }}</p>
                     <a @click="goToQuiz(quiz.id)" class="quizBtn btn">go to quiz</a>
                 </div>
             </ul>
+            <!-- <div v-if="quizes.length % 2 != 0 || quizes.length % 6 != 0" id="voidDiv30"></div>
+            <div v-else-if="quizes.length % 3 != 0" id="voidDiv60"></div> -->
         </div>
 
     </body>
@@ -59,7 +61,7 @@ export default {
     },
     methods: {
     goToQuiz(id) {
-      this.$router.push("Quiz/" + id);
+      this.$router.push("QuizOverview/" + id);
     },
   },
 };
@@ -71,6 +73,7 @@ ul{
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 28%;
 }
 
 .CreateQuiz:hover,
@@ -132,16 +135,33 @@ ul{
     flex-direction: column;
     padding: 20px;
     background-color: rgb(202, 48, 48);
-    width: 30%;
     height: 510px;
     margin: 1.6%;
     border-radius: 30px;
+    width: 100%;
 }
+
+/* #voidDiv60 {
+    display: flex;
+    flex-direction: column;
+    height: 510px;
+    border-radius: 30px;
+    width: 60%;
+}
+
+#voidDiv30 {
+    display: flex;
+    flex-direction: column;
+    height: 510px;
+    border-radius: 30px;
+    width: 30%;
+} */
 
 #quizContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    row-gap: 50px;
 }
 </style>

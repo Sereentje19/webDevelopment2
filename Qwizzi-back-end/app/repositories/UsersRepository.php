@@ -6,8 +6,6 @@ use PDO;
 use PDOException;
 use Repositories\Repository;
 
-// require_once __DIR__ . '/../models/Users.php';
-
 class UsersRepository extends Repository
 {
     function checkUsernamePassword($username, $password)

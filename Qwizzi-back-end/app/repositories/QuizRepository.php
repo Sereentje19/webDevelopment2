@@ -6,10 +6,10 @@ use PDO;
 use PDOException;
 use Repositories\Repository;
 
-// require_once __DIR__ . '/../models/Quizes.php';
-
 class QuizRepository extends Repository
 {
+
+    //Quizes
     public function getAllQuizes()
     {
         try {
@@ -42,23 +42,45 @@ class QuizRepository extends Repository
             echo $e;
         }
     }
-
-    function insert($quiz)
+    
+    function insertQuiz($quiz)
     {
         $quiz->image = "";
         $quiz->userId = 1;
-        $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image,  title, text) 
+        $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 
         VALUES (?,?,?,?)");
         $stmt->execute([$quiz->userId, $quiz->image, $quiz->title, $quiz->text]);
-
-        $quiz->id = $this->connection->lastInsertId();
-        // $stmt = $this->connection->prepare("INSERT INTO Questions (quizId, question, correctAnswer, answer2, answer3, answer4) 
-        // VALUES (?,?,?)");
-        // $stmt->execute([$questions->quizId, $questions->question, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
-        return $quiz;
+        return $this->connection->lastInsertId();
     }
     private function getImageBase64($imageData)
     {
         return 'data:image/png;base64,' . base64_encode($imageData);
+    }
+
+
+
+    //Questions
+    public function getAllQuestions()
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT id, quizId, question, correctAnswer, answer2, answer3, answer4 FROM Questions");
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Questions');
+            $questions = $stmt->fetchAll();
+
+            return $questions;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
+    public function insertQuestions($id, $questions)
+    {
+        $questions->image = "";
+        $stmt = $this->connection->prepare("INSERT INTO Questions
+        (quizId, question, image, correctAnswer, answer2, answer3, answer4) 
+        VALUES (?,?,?,?,?,?,?)");
+
+        $stmt->execute([$id, $questions->question, $questions->image, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
     }
 }

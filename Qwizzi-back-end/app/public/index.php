@@ -18,9 +18,13 @@ $router->get('/users', 'UsersController@login');
 $router->post('/users', 'UsersController@create');
 
 // routes for the Quizes endpoint
-$router->get('/quizes', 'QuizController@getAll');
-$router->post('/quizes', 'QuizController@create');
+$router->get('/quizes', 'QuizController@getAllQuizes');
+$router->post('/quizes', 'QuizController@createQuiz');
 $router->get('/quizes/(\d+)', 'QuizController@getOne');
+
+// routes for the Questions endpoint
+$router->get('/questions', 'QuizController@getAllQuestions');
+$router->post('/questions', 'QuizController@createQuestions');
 
 // $router->put('/products/(\d+)', 'ProductController@update');
 // $router->delete('/products/(\d+)', 'ProductController@delete');

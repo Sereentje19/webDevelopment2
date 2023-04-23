@@ -15,11 +15,18 @@ class QuizService {
     public function getAllQuizes(){
         return $this->repository->getAllQuizes();
     }
+    public function getAllQuestions(){
+        return $this->repository->getAllQuestions();
+    }
     public function getOne($id){
         return $this->repository->getOne($id);
     }
-    public function insert($quiz){
-        return $this->repository->insert($quiz);
+    public function insertQuiz($quiz){
+        return $this->repository->insertQuiz($quiz);
+    }
+
+    public function insertQuestions($quizId, $questions){
+        return $this->repository->insertQuestions($quizId, $questions);
     }
   
 }

@@ -9,11 +9,10 @@
                 <ul v-for="q in quiz">
                     <h1>{{ q.title }}</h1>
                     <p> {{ q.text }}</p>
-                    <button class="Play btn">Play</button>
+                    <a href="/PlayQuiz" class="Play btn">Play</a>
                 </ul>
             </div>
         </div>
-
     </body>
     <footerNavigation />
 </template>
@@ -60,52 +59,3 @@ export default {
     },
 };
 </script>
-
-<style>
-ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-    background-color: rgb(255, 237, 237);
-    min-height: 570px;
-}
-
-.Play:hover,
-.Play {
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 35px;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(255, 240, 255);
-    border-color: rgb(89, 0, 89);
-    color: rgb(89, 0, 89);
-    font-weight: bold;
-}
-
-.Play:hover {
-    background-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-}
-
-#logoQ {
-    width: 50%;
-    padding: 2.5%;
-    border-radius: 50px;
-}
-
-#QuizContainer {
-    display: flex;
-    width: 100%;
-    min-height: 400px;
-}
-
-#text {
-    width: 50%;
-    padding: 2.5%;
-    font-size: 20px;
-}
-</style>
