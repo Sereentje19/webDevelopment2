@@ -131,7 +131,7 @@ export default {
                         answer4: this.questions[i].answer4,
                     }).catch((error) => console.log(error));
                 }
-                // this.$router.push("Quizes");
+                this.$router.push("Quizes");
             }).catch((error) => console.log(error));
         },
     },

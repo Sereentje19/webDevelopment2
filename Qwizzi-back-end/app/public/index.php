@@ -23,7 +23,7 @@ $router->post('/quizes', 'QuizController@createQuiz');
 $router->get('/quizes/(\d+)', 'QuizController@getOneQuiz');
 
 // routes for the Questions endpoint
-$router->get('/questions', 'QuestionController@getAllQuestions');
+$router->get('/questions/(\d+)', 'QuestionController@getById');
 $router->post('/questions', 'QuestionController@createQuestion');
 
 // $router->put('/products/(\d+)', 'ProductController@update');

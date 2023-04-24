@@ -3,8 +3,9 @@
 
     <body>
         <div id="QuizContainer">
-
-            
+            derget5w
+            {{ this.question.quizId }}
+            <a @click="goToQuiz()" class="Play btn">Play</a>
         </div>
     </body>
     <footerNavigation />
@@ -28,27 +29,36 @@ export default {
             footerNavigation
         }
     },
-    name: "Quiz",
+    name: "PlayQuiz",
     props: {
         id: Number,
     },
     data() {
         return {
-            quiz: {
+            question: {
                 id: 0,
-                userId: 0,
-                title: "",
-                text: "",
+                quizId: 0,
+                question: '',
+                correctAnswer: '',
+                answer2: '',
+                answer3: '',
+                answer4: ''
             },
         };
     },
     mounted() {
         axios
-            .get('quizes/' + this.id)
+            .get('questions/' + this.id)
             .then((res) => {
-                this.quiz = res.data;
+                this.question = res.data;
             })
             .catch(error => console.log(error))
     },
+    methods: {
+        goToQuiz() {
+            this.$router.push("PlayQuiz/" + 1);
+        },
+    },
+
 };
 </script>

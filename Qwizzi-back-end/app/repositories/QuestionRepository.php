@@ -9,10 +9,12 @@ use Repositories\Repository;
 class QuestionRepository extends Repository
 {
 
-    public function getAllQuestions()
+    public function getQuestionsByQuizId($quizId)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT id, quizId, question, correctAnswer, answer2, answer3, answer4 FROM Questions");
+            $stmt = $this->connection->prepare("SELECT id, quizId, question, correctAnswer, answer2, answer3, answer4
+            FROM Questions WHERE quizId = :quizId");
+            $stmt->bindParam(':quizId', $quizId);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Questions');
             $questions = $stmt->fetchAll();

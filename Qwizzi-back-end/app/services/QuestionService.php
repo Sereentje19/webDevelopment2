@@ -11,12 +11,12 @@ class QuestionService {
     {
         $this->repository = new QuestionRepository();
     }
-    public function getAllQuestions(){
-        return $this->repository->getAllQuestions();
+    public function getById($quizId){
+        return $this->repository->getQuestionsByQuizId($quizId);
     }
 
     public function createQuestion($quizId, $questions){
-        $this->repository->createQuestion(1, $questions);
+        $this->repository->createQuestion($quizId, $questions);
     }
   
 }
