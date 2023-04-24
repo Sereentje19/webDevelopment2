@@ -9,7 +9,6 @@ use Services\QuestionService;
 class QuestionController extends Controller{
     
     private $service;
-    private $quizId = 1;
 
     function __construct()
     {
@@ -25,7 +24,7 @@ class QuestionController extends Controller{
 
     public function createQuestion(){
         $question = $this->createObjectFromPostedJson("Models\\Questions");
-        $this->service->createQuestion($this->quizId, $question);
+        $this->service->createQuestion(1, $question);
 
     }
     

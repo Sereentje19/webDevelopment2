@@ -16,7 +16,7 @@ class QuestionService {
     }
 
     public function createQuestion($quizId, $questions){
-        return $this->repository->createQuestion($quizId, $questions);
+        $this->repository->createQuestion(1, $questions);
     }
   
 }
