@@ -5,13 +5,14 @@
     <body>
         <div class="headerQuizes d-flex">
             <h1>Quizes</h1>
-            <a href="/CreateQuiz"  class="CreateQuiz btn">Create quiz</a>
+            <a href="/CreateQuiz" class="CreateQuiz btn">Create quiz</a>
         </div>
-        
+
         <div id="quizContainer">
-            <ul v-for="quiz in quizes">
+            <ul v-for="quiz in quizes" :key="quiz.id">
                 <div id="quiz">
-                    <img id="logoQuiz" src="/images/logo.png" alt="Image is not shown">
+                    <img id="picture" :src="quiz.image" alt="Image is not shown"><br>
+
                     <h2>{{ quiz.title }}</h2>
                     <p id="textQuiz"> {{ quiz.text }}</p>
                     <a @click="goToQuiz(quiz.id)" class="quizBtn btn">go to quiz</a>
@@ -60,20 +61,20 @@ export default {
             .catch(error => console.log(error))
     },
     methods: {
-    goToQuiz(id) {
-      this.$router.push("QuizOverview/" + id);
+        goToQuiz(id) {
+            this.$router.push("QuizOverview/" + id);
+        },
     },
-  },
 };
 </script>
 
 
 <style>
-ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 28%;
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 28%;
 }
 
 .CreateQuiz:hover,
@@ -133,12 +134,19 @@ ul{
 #quiz {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 5%;
     background-color: rgb(202, 48, 48);
     height: 510px;
     margin: 1.6%;
     border-radius: 30px;
     width: 100%;
+}
+
+#picture {
+    border-radius: 20px 20px 5px 5px;
+    width: 105.1%;
+    margin-left: -2.4%;
+    margin-top: -2.7%;
 }
 
 /* #voidDiv60 {

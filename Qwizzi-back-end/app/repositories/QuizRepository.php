@@ -12,14 +12,14 @@ class QuizRepository extends Repository
     public function getAllQuizes()
     {
         try {
-            $stmt = $this->connection->prepare("SELECT id, userId, title, text FROM Quizes");
+            $stmt = $this->connection->prepare("SELECT * FROM Quizes");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Quizes');
             $quizes = $stmt->fetchAll();
 
-            // foreach ($quizes as $q) {
-            //     $this->getImageBase64($q->image);
-            // }
+            foreach ($quizes as $q) {
+                $q->image = $this->getImageBase64($q->image);
+            }
 
             return $quizes;
         } catch (PDOException $e) {
@@ -44,7 +44,7 @@ class QuizRepository extends Repository
     
     function createQuiz($quiz)
     {
-        // $quiz->image = "";
+        $quiz->image = base64_encode($quiz->image);
         $quiz->userId = 1;
         $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 
         VALUES (?,?,?,?)");

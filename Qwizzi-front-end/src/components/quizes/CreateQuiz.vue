@@ -98,10 +98,11 @@ export default {
     },
     data() {
         return {
+            file: null,
+            fileContents: null,
             questions: [
                 {
                     question: '',
-                    // image: '',
                     correctAnswer: '',
                     answer2: '',
                     answer3: '',
@@ -113,11 +114,18 @@ export default {
     methods: {
         onFileChange(event) {
             this.file = event.target.files[0];
+            this.readFile();
+        },
+        readFile() {
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.fileContents = reader.result;
+            };
+            reader.readAsDataURL(this.file);
         },
         addQuestion() {
             this.questions.push({
                 question: '',
-                // image: '',
                 correctAnswer: '',
                 answer2: '',
                 answer3: '',
@@ -125,23 +133,22 @@ export default {
             });
         },
         create() {
-            console.log(this.image);
+            console.log(this.fileContents);
             axios.post('quizes', {
                 title: this.title,
                 text: this.text,
-                image: this.image,
+                image: this.fileContents,
             }).then((r) => {
                 for (let i = 0; i < this.questions.length; i++) {
                     axios.post('questions', {
                         question: this.questions[i].question,
-                        // image: this.questions[i].image,
                         correctAnswer: this.questions[i].correctAnswer,
                         answer2: this.questions[i].answer2,
                         answer3: this.questions[i].answer3,
                         answer4: this.questions[i].answer4,
                     }).catch((error) => console.log(error));
                 }
-                this.$router.push("Quizes");
+                // this.$router.push("Quizes");
             }).catch((error) => console.log(error));
         },
     },

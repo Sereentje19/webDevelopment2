@@ -18,10 +18,6 @@ class QuizController extends Controller{
     {
         $quizes = $this->service->getAllQuizes();
 
-        // foreach ($quizes as $q) {
-        //     "data:image/png;charset=utf;base64," . base64_encode($q->image);
-        // }
-
         $this->respond($quizes);
     }
     public function getOneQuiz($id){
