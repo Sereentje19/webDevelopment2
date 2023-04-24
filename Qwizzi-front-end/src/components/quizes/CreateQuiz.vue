@@ -21,8 +21,11 @@
                 </div>
 
                 <label id="title" for="title"><b>Upload image</b></label>
-                <input v-model="image" id="inputTitle" type="text" placeholder="Later fixen" name="title" required>
-
+                <div class="form-group">
+                    <input type="file" @change="onFileChange">
+                    <p id="colorPurple"><small>Picture &lt; 64mb</small>
+                    </p>
+                </div>
 
 
 
@@ -98,6 +101,7 @@ export default {
             questions: [
                 {
                     question: '',
+                    // image: '',
                     correctAnswer: '',
                     answer2: '',
                     answer3: '',
@@ -106,11 +110,14 @@ export default {
             ]
         }
     },
-
     methods: {
+        onFileChange(event) {
+            this.file = event.target.files[0];
+        },
         addQuestion() {
             this.questions.push({
                 question: '',
+                // image: '',
                 correctAnswer: '',
                 answer2: '',
                 answer3: '',
@@ -118,13 +125,16 @@ export default {
             });
         },
         create() {
+            console.log(this.image);
             axios.post('quizes', {
                 title: this.title,
                 text: this.text,
+                image: this.image,
             }).then((r) => {
                 for (let i = 0; i < this.questions.length; i++) {
                     axios.post('questions', {
                         question: this.questions[i].question,
+                        // image: this.questions[i].image,
                         correctAnswer: this.questions[i].correctAnswer,
                         answer2: this.questions[i].answer2,
                         answer3: this.questions[i].answer3,
@@ -140,6 +150,20 @@ export default {
 
 
 <style>
+.form-group input[type="file"]::file-selector-button {
+    background-color: rgb(89, 0, 89);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 0px 15px 0px 0px;
+}
+
+#colorPurple,
+.form-group input[type="file"] {
+    color: rgb(89, 0, 89);
+}
+
 .createbtn:hover,
 .createbtn {
     margin-top: 40px;
