@@ -2,19 +2,20 @@
     <headerNavigation />
 
     <body>
-        <div id="questionContainer" v-if="this.index != questions.length">
+        <div id="questionContainer" v-if="this.index < questions.length">
             <!-- {{ this.index + 1 }} -->
             <div class="name">{{ this.questions[this.index].question }}</div>
             <br><br><br>
 
             <div id="answer">
                 <div id="titleInput1">
-                    <button @click="nextQuestion(this.shuffledQuestions[this.index].correctAnswer)"
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].correctAnswer)"
                         class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].correctAnswer }}</button>
+                            
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[this.index].answer2)" class="mainButtonReverse btn">{{
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer2)" class="mainButtonReverse btn">{{
                         this.shuffledQuestions[this.index].answer2
                     }}</button>
                 </div>
@@ -22,22 +23,34 @@
 
             <div id="answer">
                 <div id="titleInput1">
-                    <button @click="nextQuestion(this.shuffledQuestions[this.index].answer3)" class="mainButtonReverse btn">{{
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer3)" class="mainButtonReverse btn">{{
                         this.shuffledQuestions[this.index].answer3
                     }}</button>
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[this.index].answer4)" class="mainButtonReverse btn">{{
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer4)" class="mainButtonReverse btn">{{
                         this.shuffledQuestions[this.index].answer4
                     }}</button>
                 </div>
             </div>
-
-            <!-- <a @click="nextQuestion()" class="mainButton btn">Next question</a> -->
         </div>
-        <div id="QuizContainer" v-else="this.index != questions.length">
-            tes
-            <!-- <a @click="nextQuestion()" class="mainButton btn">Play</a> -->
+        <div v-else="this.index != questions.length">
+            <div class="name">Your answers</div>
+            <div id="questionContainer" v-for="(quest, index) in questions">
+                <div class="name">{{ quest.question }}</div>
+                <div class="correctAnswer">{{ quest.correctAnswer }}</div>
+                <div class="nameRed" v-if="quest.answer2 == this.arrayAnswers[index]">{{ quest.answer2 }}</div>
+                <div class="name" v-else-if="quest.answer2 != this.arrayAnswers[index]">{{ quest.answer2 }}</div>
+                <div class="nameRed" v-if="quest.answer3 == this.arrayAnswers[index]">{{ quest.answer3 }}</div>
+                <div class="name"  v-else-if="quest.answer3 != this.arrayAnswers[index]">{{ quest.answer3 }}</div>
+                <div class="nameRed" v-if="quest.answer4 == this.arrayAnswers[index]">{{ quest.answer4 }}</div>
+                <div class="name" v-else-if="quest.answer4 != this.arrayAnswers[index]">{{ quest.answer4 }}</div>
+
+
+
+            </div>
+            <a @click="nextQuestion()" class="mainButton btn">Play</a>
+
         </div>
     </body>
     <footerNavigation />
@@ -86,6 +99,7 @@ export default {
                 }
             ],
             index: 0,
+            arrayAnswers: [],
         };
     },
     mounted() {
@@ -93,9 +107,31 @@ export default {
             .get('questions/' + this.id)
             .then((res) => {
                 this.questions = res.data;
-                this.index = localStorage.getItem("questionNumber");
+                this.shuffledQuestions = this.questions.map(question => ({
+                correctAnswer: question.correctAnswer,
+                answer2: question.answer2,
+                answer3: question.answer3,
+                answer4: question.answer4
+            }));
+            this.shuffleQuestions();
 
-                let answers = [
+            })
+            .catch(error => console.log(error))
+    },
+    methods: {
+        nextQuestion(finalAnswer) {
+            const arrayAnswers = JSON.parse(localStorage.getItem('arrayAnswers')) || [];
+            this.arrayAnswers.push(finalAnswer);
+            localStorage.setItem('arrayAnswers', JSON.stringify(arrayAnswers));
+
+            this.index++;
+            localStorage.setItem('questionNumber', this.index);
+            this.shuffleQuestions();
+        },
+        shuffleQuestions(){
+            this.index = parseInt(localStorage.getItem("questionNumber"));
+
+            let answers = [
                     this.questions[this.index].correctAnswer,
                     this.questions[this.index].answer2,
                     this.questions[this.index].answer3,
@@ -108,34 +144,34 @@ export default {
                     [answers[i], answers[j]] = [answers[j], answers[i]];
                 }
 
-                // if(this.index != 0) {                
-                //     localStorage.getItem("finalAnswer", JSON.parse(arrayAnswers[this.index]));
-                // }
-
                 // assign the shuffled values to the buttons
                 this.shuffledQuestions[this.index].correctAnswer = answers[0];
                 this.shuffledQuestions[this.index].answer2 = answers[1];
                 this.shuffledQuestions[this.index].answer3 = answers[2];
                 this.shuffledQuestions[this.index].answer4 = answers[3];
-
-            })
-            .catch(error => console.log(error))
-    },
-    methods: {
-        nextQuestion(finalAnswer) {
-            console.log(finalAnswer);
-            const arrayAnswers = JSON.parse(localStorage.getItem('arrayAnswers')) || [];
-
-            arrayAnswers.push(finalAnswer);
-            localStorage.setItem('arrayAnswers', JSON.stringify(arrayAnswers));
-            localStorage.setItem('questionNumber', ++this.index);
-        },
+        }
     },
 
 };
 </script>
 
 <style>
+.nameRed {
+  color: red;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.correctAnswer{
+  color: green;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
 #titleInput {
     display: flex;
     flex-direction: column;
