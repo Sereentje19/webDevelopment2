@@ -103,7 +103,7 @@ ul {
 
 #textQuiz {
     font-size: 18px;
-    min-height: 130px;
+    min-height: 100px;
 }
 
 .quizBtn:hover,
@@ -144,9 +144,10 @@ ul {
 
 #picture {
     border-radius: 20px 20px 5px 5px;
-    width: 105.1%;
+    width: 403px;
     margin-left: -2.4%;
     margin-top: -2.7%;
+    height: 250px;
 }
 
 /* #voidDiv60 {

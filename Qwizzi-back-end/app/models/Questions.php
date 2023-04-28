@@ -10,5 +10,4 @@ public string $correctAnswer;
 public string $answer2;
 public string $answer3;
 public string $answer4;
-
 }

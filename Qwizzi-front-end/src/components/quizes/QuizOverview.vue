@@ -59,17 +59,18 @@ export default {
     },
     methods: {
         goToQuiz(id) {
-      this.$router.push("PlayQuiz/" + id);
-    },
+            localStorage.setItem("questionNumber", 0);
+            this.$router.push("PlayQuiz/" + id);
+        },
     },
 };
 </script>
 
 <style>
-ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 body {
