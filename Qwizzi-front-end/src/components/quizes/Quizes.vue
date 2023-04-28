@@ -90,6 +90,10 @@ ul {
     font-weight: bold;
     width: 200px;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
 }
 
 .CreateQuiz:hover {
@@ -144,7 +148,7 @@ ul {
 
 #picture {
     border-radius: 20px 20px 5px 5px;
-    width: 403px;
+    width: 405px;
     margin-left: -2.4%;
     margin-top: -2.7%;
     height: 250px;

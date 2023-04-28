@@ -29,7 +29,6 @@
 
 
 
-
                 <div v-for="(quest, index) in questions" :key="index">
                     <br><br><br>
                     <div id="titleInput1">

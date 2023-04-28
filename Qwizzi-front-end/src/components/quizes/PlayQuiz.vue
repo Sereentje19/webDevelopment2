@@ -39,6 +39,7 @@
         </div>
         <div v-else="this.index != questions.length">
             <div class="name">Your answers</div>
+            <br><br>
             <div id="answerContainer" v-for="(quest, index) in questions">
                 <div class="title">{{ quest.question }}</div>
                 <div class="correctAnswer">{{ quest.correctAnswer }}</div>
@@ -204,7 +205,7 @@ export default {
     margin: auto;
     text-align: left;
     align-items: start;
-    padding-left: 50px;
+    padding-left: 80px;
 }
 
 #questionContainer {
