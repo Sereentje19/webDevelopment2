@@ -12,45 +12,46 @@
                     <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].correctAnswer)"
                         class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].correctAnswer }}</button>
-                            
+
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer2)" class="mainButtonReverse btn">{{
-                        this.shuffledQuestions[this.index].answer2
-                    }}</button>
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer2)"
+                        class="mainButtonReverse btn">{{
+                            this.shuffledQuestions[this.index].answer2
+                        }}</button>
                 </div>
             </div>
 
             <div id="answer">
                 <div id="titleInput1">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer3)" class="mainButtonReverse btn">{{
-                        this.shuffledQuestions[this.index].answer3
-                    }}</button>
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer3)"
+                        class="mainButtonReverse btn">{{
+                            this.shuffledQuestions[this.index].answer3
+                        }}</button>
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer4)" class="mainButtonReverse btn">{{
-                        this.shuffledQuestions[this.index].answer4
-                    }}</button>
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer4)"
+                        class="mainButtonReverse btn">{{
+                            this.shuffledQuestions[this.index].answer4
+                        }}</button>
                 </div>
             </div>
         </div>
         <div v-else="this.index != questions.length">
             <div class="name">Your answers</div>
-            <div id="questionContainer" v-for="(quest, index) in questions">
-                <div class="name">{{ quest.question }}</div>
+            <div id="answerContainer" v-for="(quest, index) in questions">
+                <div class="title">{{ quest.question }}</div>
                 <div class="correctAnswer">{{ quest.correctAnswer }}</div>
                 <div class="nameRed" v-if="quest.answer2 == this.arrayAnswers[index]">{{ quest.answer2 }}</div>
-                <div class="name" v-else-if="quest.answer2 != this.arrayAnswers[index]">{{ quest.answer2 }}</div>
+                <div class="restAnswers" v-else-if="quest.answer2 != this.arrayAnswers[index]">{{ quest.answer2 }}</div>
                 <div class="nameRed" v-if="quest.answer3 == this.arrayAnswers[index]">{{ quest.answer3 }}</div>
-                <div class="name"  v-else-if="quest.answer3 != this.arrayAnswers[index]">{{ quest.answer3 }}</div>
+                <div class="restAnswers" v-else-if="quest.answer3 != this.arrayAnswers[index]">{{ quest.answer3 }}</div>
                 <div class="nameRed" v-if="quest.answer4 == this.arrayAnswers[index]">{{ quest.answer4 }}</div>
-                <div class="name" v-else-if="quest.answer4 != this.arrayAnswers[index]">{{ quest.answer4 }}</div>
+                <div class="restAnswers" v-else-if="quest.answer4 != this.arrayAnswers[index]">{{ quest.answer4 }}</div>
 
-
-
+                <br><br><br>
             </div>
-            <a @click="nextQuestion()" class="mainButton btn">Play</a>
-
+            <a href="/Quizes" class="mainButton btn">Done</a>
         </div>
     </body>
     <footerNavigation />
@@ -108,12 +109,12 @@ export default {
             .then((res) => {
                 this.questions = res.data;
                 this.shuffledQuestions = this.questions.map(question => ({
-                correctAnswer: question.correctAnswer,
-                answer2: question.answer2,
-                answer3: question.answer3,
-                answer4: question.answer4
-            }));
-            this.shuffleQuestions();
+                    correctAnswer: question.correctAnswer,
+                    answer2: question.answer2,
+                    answer3: question.answer3,
+                    answer4: question.answer4
+                }));
+                this.shuffleQuestions();
 
             })
             .catch(error => console.log(error))
@@ -128,27 +129,27 @@ export default {
             localStorage.setItem('questionNumber', this.index);
             this.shuffleQuestions();
         },
-        shuffleQuestions(){
+        shuffleQuestions() {
             this.index = parseInt(localStorage.getItem("questionNumber"));
 
             let answers = [
-                    this.questions[this.index].correctAnswer,
-                    this.questions[this.index].answer2,
-                    this.questions[this.index].answer3,
-                    this.questions[this.index].answer4,
-                ];
+                this.questions[this.index].correctAnswer,
+                this.questions[this.index].answer2,
+                this.questions[this.index].answer3,
+                this.questions[this.index].answer4,
+            ];
 
-                // shuffle the answers array
-                for (let i = answers.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [answers[i], answers[j]] = [answers[j], answers[i]];
-                }
+            // shuffle the answers array
+            for (let i = answers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [answers[i], answers[j]] = [answers[j], answers[i]];
+            }
 
-                // assign the shuffled values to the buttons
-                this.shuffledQuestions[this.index].correctAnswer = answers[0];
-                this.shuffledQuestions[this.index].answer2 = answers[1];
-                this.shuffledQuestions[this.index].answer3 = answers[2];
-                this.shuffledQuestions[this.index].answer4 = answers[3];
+            // assign the shuffled values to the buttons
+            this.shuffledQuestions[this.index].correctAnswer = answers[0];
+            this.shuffledQuestions[this.index].answer2 = answers[1];
+            this.shuffledQuestions[this.index].answer3 = answers[2];
+            this.shuffledQuestions[this.index].answer4 = answers[3];
         }
     },
 
@@ -156,20 +157,25 @@ export default {
 </script>
 
 <style>
-.nameRed {
-  color: red;
-  font-size: 50px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
+.nameRed,
+.restAnswers,
+.title,
+.correctAnswer {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(89, 0, 89);
 }
 
-.correctAnswer{
-  color: green;
-  font-size: 50px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
+.nameRed {
+    color: red;
+}
+
+.title {
+    font-size: 40px;
+}
+
+.correctAnswer {
+    color: green;
 }
 
 #titleInput {
@@ -177,7 +183,6 @@ export default {
     flex-direction: column;
     width: 50%;
 }
-
 
 #titleInput1 {
     display: flex;
@@ -189,6 +194,17 @@ export default {
 #answer {
     display: flex;
     flex-direction: row;
+}
+
+#answerContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    left: 0;
+    margin: auto;
+    text-align: left;
+    align-items: start;
+    padding-left: 50px;
 }
 
 #questionContainer {
@@ -204,8 +220,11 @@ export default {
     justify-content: center;
 }
 
-.mainButton:hover,
-.mainButton {
+.mainButton,
+.mainButton:hover {
     width: 10px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 </style>
