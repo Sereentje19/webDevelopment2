@@ -34,13 +34,13 @@ export default {
     },
     methods: {
         login() {
-            axios.get("users", {
+            axios.post("users", {
                 username: this.username,
                 password: this.password,
             }).then((res) => {
-                if (this.username == res.data.username && this.password == res.data.password) {
+                // if (this.username == res.data.username && this.password == res.data.password) {
                     this.$router.push("/");
-                }
+                // }
             }).catch((error) => {
                 console.log(error);
                 alert("Error logging in");

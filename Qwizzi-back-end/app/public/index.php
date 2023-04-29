@@ -14,7 +14,7 @@ $router = new \Bramus\Router\Router();
 $router->setNamespace('Controllers');
 
 // routes for the Users endpoint
-$router->get('/users', 'UsersController@login');
+$router->post('/users', 'UsersController@login');
 $router->post('/users', 'UsersController@createUser');
 
 // routes for the Quizes endpoint

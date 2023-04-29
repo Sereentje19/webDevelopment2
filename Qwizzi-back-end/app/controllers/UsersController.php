@@ -17,17 +17,24 @@ class UsersController extends Controller{
 
     public function login()
     {
-        $data = $this->createObjectFromPostedJson("Models\\Users");
-        $user = $this->service->checkUsernamePassword($data->username, $data->password);
-
-        if(count($user) == 0)
-        {
-            
+        try{
+            $data = $this->createObjectFromPostedJson("Models\\Users");
+            $user =  $this->service->checkUsernamePassword($data->username, $data->password);
+    
+            // if(count($user) == 0)
+            // {
+                
+            // }
+    
+            // if (!$user) {
+            //     $this->respondWithError(401, "Incorrect password");
+            // }
+            $this->respond($user);
         }
-
-        if (!$user) {
-            $this->respondWithError(401, "Incorrect password");
+        catch(Exception $e){
+            $this->respondWithError(500, $e->getMessage());
         }
+        
 
     }
 
