@@ -21,19 +21,35 @@
 import axios from '../../axios-auth.js';
 
 export default {
+    data() {
+        return {
+            user: [
+                {
+                    username: '',
+                    email: '',
+                    password: '',
+                }
+            ]
+        };
+    },
     methods: {
         login() {
-            axios.post("users", {
+            axios.get("users", {
                 username: this.username,
                 password: this.password,
             }).then((res) => {
-                this.$router.push("/");
-            })
-                .catch((error) => console.log(error));
-        },
+                if (this.username == res.data.username && this.password == res.data.password) {
+                    this.$router.push("/");
+                }
+            }).catch((error) => {
+                console.log(error);
+                alert("Error logging in");
+            });
+        }
     }
 }
 </script>
+
 
 <style>
 #letterType2 {

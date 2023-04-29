@@ -14,6 +14,7 @@ class UsersController extends Controller{
     {
         $this->service = new UsersService();
     }
+
     public function login()
     {
         $data = $this->createObjectFromPostedJson("Models\\Users");
@@ -33,7 +34,7 @@ class UsersController extends Controller{
     public function createUser(){
         try {
             $user = $this->createObjectFromPostedJson("Models\\Users");
-            $user = $this->service->createUser($user);
+            $this->service->createUser($user);
 
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());

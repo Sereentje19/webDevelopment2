@@ -66,11 +66,11 @@ class UsersRepository extends Repository
     function createUser($user)
     {
         //inser the user into the table users and return the user
-        $stmt = $this->connection->prepare("INSERT into Users (username, email, password) 
+        $stmt = $this->connection->prepare("INSERT INTO Users (username, email, password) 
         VALUES (?,?,?)");
         $stmt->execute([$user->username, $user->email, $user->password]);
 
-        $user->id = $this->connection->lastInsertId();
+        // $user->id = $this->connection->lastInsertId();
         //return the created user by first getting the user from the database by id
         return $user;
     }
