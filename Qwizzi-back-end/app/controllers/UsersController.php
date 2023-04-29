@@ -19,16 +19,8 @@ class UsersController extends Controller{
     {
         try{
             $data = $this->createObjectFromPostedJson("Models\\Users");
-            $user =  $this->service->checkUsernamePassword($data->username, $data->password);
+            $user = $this->service->checkUsernamePassword($data->username, $data->password);
     
-            // if(count($user) == 0)
-            // {
-                
-            // }
-    
-            // if (!$user) {
-            //     $this->respondWithError(401, "Incorrect password");
-            // }
             $this->respond($user);
         }
         catch(Exception $e){
@@ -43,11 +35,11 @@ class UsersController extends Controller{
             $user = $this->createObjectFromPostedJson("Models\\Users");
             $this->service->createUser($user);
 
+            $this->respond($user);
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
         }
 
-        $this->respond($user);
     }
     
 }

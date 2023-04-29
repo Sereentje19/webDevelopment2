@@ -17,6 +17,15 @@ class QuizService {
     public function getOneQuiz($id){
         return $this->repository->getOneQuiz($id);
     }
+    public function editQuiz($quiz){
+        $this->repository->editQuiz($quiz);
+    }
+    public function deleteQuiz($id){
+        $this->repository->deleteQuiz($id);
+    }
+    public function getQuizesByUserId($userId){
+        return $this->repository->getQuizesByUserId($userId);
+    }
     public function createQuiz($quiz){
         return $this->repository->createQuiz($quiz);
     }

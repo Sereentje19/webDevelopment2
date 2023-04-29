@@ -8,6 +8,8 @@ import QuizOverview from '../components/quizes/QuizOverview.vue';
 import EnterCode from '../components/quizes/EnterCode.vue';
 import CreateQuiz from '../components/quizes/CreateQuiz.vue';
 import PlayQuiz from '../components/quizes/PlayQuiz.vue';
+import MyQuizes from '../components/quizes/MyQuizes.vue';
+import EditQuiz from '../components/quizes/EditQuiz.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +21,9 @@ const router = createRouter({
     { path: '/QuizOverview/:id', component: QuizOverview, props: true },
     { path: '/CreateQuiz', component: CreateQuiz },
     { path: '/QuizOverview/PlayQuiz/:id', component: PlayQuiz, props: true },
-    { path: '/EnterCode', component: EnterCode }
+    { path: '/EnterCode', component: EnterCode },
+    { path: '/MyQuizes', component: MyQuizes },
+    { path: '/EditQuiz/:id', component: EditQuiz, props: true }
   ]
 })
 

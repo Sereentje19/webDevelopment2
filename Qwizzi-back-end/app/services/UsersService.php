@@ -12,7 +12,7 @@ class UsersService {
         $this->repository = new UsersRepository();
     }
     public function createUser($user){
-        return $this->repository->createUser($user);
+        $this->repository->createUser($user);
     }
 
     public function checkUsernamePassword($username, $password){

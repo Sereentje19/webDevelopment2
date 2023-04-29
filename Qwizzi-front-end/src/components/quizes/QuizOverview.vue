@@ -2,15 +2,13 @@
     <headerNavigation />
 
     <body>
-        <div id="QuizContainer">
-            <img id="logoQ" src="/images/logo.png" alt="Image is not shown">
-
+        <div id="QuizContainer" v-for="q in quiz">
+            <!-- <img id="logoQ" src="/images/logo.png" alt="Image is not shown"> -->
+            <img id="logoQ" :src="q.image" alt="Image is not shown"><br>
             <div id="text">
-                <ul v-for="q in quiz">
-                    <h1>{{ q.title }}</h1>
-                    <p> {{ q.text }}</p>
-                    <a @click="goToQuiz(q.id)" class="Play btn">Play</a>
-                </ul>
+                <h1>{{ q.title }}</h1>
+                <p> {{ q.text }}</p>
+                <a @click="goToQuiz(q.id)" class="Play btn">Play</a>
             </div>
         </div>
     </body>
@@ -89,6 +87,9 @@ body {
     border-color: rgb(89, 0, 89);
     color: rgb(89, 0, 89);
     font-weight: bold;
+    align-self: flex-start;
+    bottom: 25px;
+    position: absolute;
 }
 
 .Play:hover {
@@ -112,5 +113,9 @@ body {
     width: 50%;
     padding: 2.5%;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    position: relative;
 }
 </style>

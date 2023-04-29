@@ -18,11 +18,13 @@
 
                     <h2>{{ quiz.title }}</h2>
                     <p id="textQuiz"> {{ quiz.text }}</p>
-                    <a @click="goToQuiz(quiz.id)" class="quizBtn btn">Go to quiz</a>
+                    <div id="buttons">
+                        <a @click="editQuiz(quiz.id)" class="myBtns btnEdit btn">Edit</a>
+                        <a @click="deleteQuiz(quiz.id)" class="myBtns btnDelete btn">Delete</a>
+                        <a @click="goToQuiz(quiz.id)" class="myBtns btn">go to quiz</a>
+                    </div>
                 </div>
             </ul>
-            <!-- <div v-if="quizes.length % 2 != 0 || quizes.length % 6 != 0" id="voidDiv30"></div>
-            <div v-else-if="quizes.length % 3 != 0" id="voidDiv60"></div> -->
         </div>
 
     </body>
@@ -56,14 +58,28 @@ export default {
         };
     },
     mounted() {
-        axios
-            .get('quizes')
-            .then((res) => {
-                this.quizes = res.data;
-            })
-            .catch(error => console.log(error))
+        this.getAll();
     },
     methods: {
+        getAll() {
+            axios
+                .get('myQuizes/' + 11)
+                .then((res) => {
+                    this.quizes = res.data;
+                })
+                .catch(error => console.log(error))
+        },
+        deleteQuiz(id) {
+            axios
+                .delete('quizes/' + id)
+                .then((res) => {
+                    this.getAll();
+                })
+                .catch(error => console.log(error))
+        },
+        editQuiz(id) {
+            this.$router.push("EditQuiz/" + id);
+        },
         goToQuiz(id) {
             this.$router.push("QuizOverview/" + id);
         },
@@ -73,6 +89,12 @@ export default {
 
 
 <style>
+#buttons {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 ul {
     list-style: none;
     margin: 0;
@@ -118,12 +140,12 @@ ul {
     min-height: 100px;
 }
 
-.quizBtn:hover,
-.quizBtn {
+.myBtns:hover,
+.myBtns {
     border-radius: 50px;
     border-style: solid;
     border-width: 3px;
-    font-size: 150%;
+    font-size: 120%;
     padding: 2px 20px 2px 20px;
     background-color: rgb(89, 0, 89);
     border-color: rgb(89, 0, 89);
@@ -131,9 +153,10 @@ ul {
     font-weight: bold;
     width: fit-content;
     align-self: flex-end;
+    /* margin: 5px; */
 }
 
-.quizBtn:hover {
+.myBtns:hover {
     background-color: rgb(255, 244, 255);
     color: rgb(89, 0, 89);
 }
@@ -184,5 +207,13 @@ ul {
     justify-content: space-evenly;
     flex-wrap: wrap;
     row-gap: 50px;
+}
+
+.btnDelete:hover {
+    background-color: red;
+}
+
+.btnEdit:hover {
+    background-color: orange;
 }
 </style>

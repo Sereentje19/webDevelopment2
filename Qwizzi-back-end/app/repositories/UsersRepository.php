@@ -11,21 +11,27 @@ class UsersRepository extends Repository
 {
     function checkUsernamePassword($username, $password)
     {
-          // retrieve the user with the given username
-          $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :username AND password = :password");
-          $stmt->bindParam(':username', $username);
-          $stmt->bindParam(':password', $password);
-          $stmt->execute();
+        // retrieve the user with the given username
+        $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :username");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
 
-          $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Users');
-          $user = $stmt->fetch();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Users');
+        $user = $stmt->fetch();
 
-          if(!$user){
-              throw new Exception("Incorrect username");
-          }
+        if (!$user) {
+            throw new Exception("Incorrect username");
+        } 
+        
+        $passwordResult = $this->verifyPassword($password, $user->password);
+        
+        if (!$passwordResult) {
+            throw new Exception("Incorrect password");
+        }
 
-      
-          return $user;
+        // do not pass the password hash to the caller
+        $user->password = "";
+        return $user;
     }
     // hash the password (currently uses bcrypt)
     function hashPassword($password)
@@ -46,6 +52,7 @@ class UsersRepository extends Repository
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Users');
             $users = $stmt->fetchAll();
 
+
             return $users;
         } catch (PDOException $e) {
             echo $e;
@@ -57,10 +64,6 @@ class UsersRepository extends Repository
         //inser the user into the table users and return the user
         $stmt = $this->connection->prepare("INSERT INTO Users (username, email, password) 
         VALUES (?,?,?)");
-        $stmt->execute([$user->username, $user->email, $user->password]);
-
-        // $user->id = $this->connection->lastInsertId();
-        //return the created user by first getting the user from the database by id
-        return $user;
+        $stmt->execute([$user->username, $user->email, $this->hashPassword($user->password)]);
     }
 }

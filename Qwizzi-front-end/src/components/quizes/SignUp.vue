@@ -46,7 +46,7 @@ export default {
         signUp() {
             if (this.username != null && this.email != null && this.password != null) {
                 if (this.password == this.confirmPassword) {
-                    axios.post("users", {
+                    axios.post("users/signUp", {
                         username: this.username,
                         email: this.email,
                         password: this.password,
