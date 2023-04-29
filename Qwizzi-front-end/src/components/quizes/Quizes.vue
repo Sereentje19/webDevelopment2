@@ -148,7 +148,7 @@ ul {
 
 #picture {
     border-radius: 20px 20px 5px 5px;
-    width: 405px;
+    width: 105%;
     margin-left: -2.4%;
     margin-top: -2.7%;
     height: 250px;
