@@ -146,7 +146,6 @@ export default {
             reader.readAsDataURL(this.file);
         },
         editQuiz() {
-            // console.log(this.q.title)
             axios.put("quizes/" + this.id, {
                 title: this.quiz[0].title,
                 text: this.quiz[0].text,

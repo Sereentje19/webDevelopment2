@@ -60,9 +60,8 @@ class QuizRepository extends Repository
     public function getQuizesByUserId($userId)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM Quizes WHERE userId = :userId");
-            $stmt->bindParam(':userId', $userId);
-            $stmt->execute();
+            $stmt = $this->connection->prepare("SELECT * FROM Quizes WHERE userId = ?");
+            $stmt->execute([$userId]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Models\\Quizes');
             $quizes = $stmt->fetchAll();
             $this->getAllImagesBase64($quizes);
