@@ -25,10 +25,10 @@ class QuizController extends Controller
         $quizes = $this->service->getOneQuiz($id);
         $this->respond($quizes);
     }
-    public function editQuiz()
+    public function editQuiz($id)
     {
         $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
-        $this->service->editQuiz($quiz);
+        $this->service->editQuiz($quiz, $id);
         $this->respond(true);
     }
     public function deleteQuiz($id)

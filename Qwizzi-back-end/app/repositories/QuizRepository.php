@@ -47,12 +47,12 @@ class QuizRepository extends Repository
             echo $e;
         }
     }
-    public function editQuiz($quiz)
+    public function editQuiz($quiz, $id)
     {
         try {
             $stmt = $this->connection->prepare("UPDATE Quizes 
             SET title = ?, text = ? WHERE id = ?");
-            $stmt->execute([$quiz->text, $quiz->title, $quiz->id]);
+            $stmt->execute([$quiz->title, $quiz->text, $id]);
         } catch (PDOException $e) {
             echo $e;
         }

@@ -113,7 +113,6 @@ export default {
             ],
             quiz: [
                 {
-                    id: 0,
                     title: '',
                     text: ''
                 }
@@ -147,11 +146,13 @@ export default {
             reader.readAsDataURL(this.file);
         },
         editQuiz() {
-            axios.put('quizes', this.quiz)
-                .then((res) => {
-                    
-                    // this.$router.push("/");
-                })
+            // console.log(this.q.title)
+            axios.put("quizes/" + this.id, {
+                title: this.quiz[0].title,
+                text: this.quiz[0].text,
+            }).then((res) => {
+                // this.$router.push("/");
+            })
                 .catch((error) => console.log(error));
         },
     },
