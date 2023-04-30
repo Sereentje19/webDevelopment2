@@ -159,11 +159,11 @@ export default {
                         answer2: this.questions[i].answer2,
                         answer3: this.questions[i].answer3,
                         answer4: this.questions[i].answer4,
+                    }).then((res) => {
+                        this.$router.push("/");
                     }).catch((error) => console.log(error));
                 }
-                this.$router.push("/");
             }).catch((error) => console.log(error));
-
         },
     },
 };

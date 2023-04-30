@@ -6,7 +6,6 @@
         <div class="headerQuizes">
             <h1>Quizes</h1>
             <div class="buttons">
-                <a href="/MyQuizes" class="CreateQuiz btn">My quizes</a>
                 <a href="/CreateQuiz" class="CreateQuiz btn">Create quiz</a>
             </div>
         </div>
