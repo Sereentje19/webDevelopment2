@@ -4,10 +4,8 @@
 
     <body>
         <div class="headerQuizes">
-            <h1>Quizes</h1>
-            <div class="buttons">
-                <a href="/CreateQuiz" class="CreateQuiz btn">Create quiz</a>
-            </div>
+            <h1 id="QuizesTitle">Quizes</h1>
+            <a href="/CreateQuiz" id="myQuizesBtn" class="mainButtonReverse btn">Create quiz</a>
         </div>
         <br>
         <div id="quizContainer">
@@ -18,12 +16,14 @@
                     <h2>{{ quiz.title }}</h2>
                     <p id="textQuiz"> {{ quiz.text }}</p>
                     <div id="buttons">
-                        <a @click="editQuiz(quiz.id)" class="myBtns btnEdit btn">Edit</a>
-                        <a @click="deleteQuiz(quiz.id)" class="myBtns btnDelete btn">Delete</a>
-                        <a @click="goToQuiz(quiz.id)" class="myBtns btn">go to quiz</a>
+                        <a @click="deleteQuiz(quiz.id)" id="btnDelete" class="mainButtonReverse myBtns btn">Delete</a>
+                        <a @click="editQuiz(quiz.id)" id="btnEdit" class="mainButtonReverse myBtns  btn">Edit</a>
+                        <a @click="goToQuiz(quiz.id)" id="myQuizBtns" class="mainButtonReverse myBtns btn">go to quiz</a>
                     </div>
                 </div>
             </ul>
+            <div v-if="quizes.length % 3 != 0 && (quizes.length + 1) % 3 != 0" id="voidDiv60"></div>
+            <div v-else-if="quizes.length % 3 != 0" id="voidDiv30"></div>
         </div>
 
     </body>
@@ -70,13 +70,13 @@ export default {
         },
         deleteQuiz(id) {
             axios
-                axios.delete('questions/' + id, {
-                }).then((res) => {
-                    axios.delete('quizes/' + id)
-                        .then((res) => {
-                            this.getAll();
-                        }).catch(error => console.log(error))
-                }).catch((error) => console.log(error));
+            axios.delete('questions/' + id, {
+            }).then((res) => {
+                axios.delete('quizes/' + id)
+                    .then((res) => {
+                        this.getAll();
+                    }).catch(error => console.log(error))
+            }).catch((error) => console.log(error));
         },
         editQuiz(id) {
             this.$router.push("EditQuiz/" + id);
@@ -88,133 +88,9 @@ export default {
 };
 </script>
 
-
 <style>
-#buttons {
-    display: flex;
-    justify-content: space-between;
-
-}
-
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 28%;
-}
-
-.CreateQuiz:hover,
-.CreateQuiz {
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 150%;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(89, 0, 89);
-    border-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-    font-weight: bold;
-    width: fit-content;
-    margin-right: 25px;
-
-}
-
-.CreateQuiz:hover {
-    background-color: rgb(255, 244, 255);
-    color: rgb(89, 0, 89);
-}
-
-.headerQuizes {
-    padding: 30px 30px 0px 30px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons {
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-#textQuiz {
-    font-size: 18px;
-    min-height: 100px;
-}
-
-.myBtns:hover,
-.myBtns {
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 120%;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(89, 0, 89);
-    border-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-    font-weight: bold;
-    width: fit-content;
-    align-self: flex-end;
-    /* margin: 5px; */
-}
-
-.myBtns:hover {
-    background-color: rgb(255, 244, 255);
-    color: rgb(89, 0, 89);
-}
-
-#logoQuiz {
-    margin-bottom: 20px;
-    border-radius: 20px;
-}
-
-#quiz {
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    background-color: rgb(202, 48, 48);
-    height: 510px;
-    margin: 1.6%;
-    border-radius: 30px;
-    width: 100%;
-}
-
-#picture {
-    border-radius: 20px 20px 5px 5px;
-    width: 105%;
-    margin-left: -2.4%;
-    margin-top: -2.7%;
-    height: 250px;
-}
-
-/* #voidDiv60 {
-    display: flex;
-    flex-direction: column;
-    height: 510px;
-    border-radius: 30px;
-    width: 60%;
-}
-
-#voidDiv30 {
-    display: flex;
-    flex-direction: column;
-    height: 510px;
-    border-radius: 30px;
-    width: 30%;
-} */
-
-#quizContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    row-gap: 50px;
-}
-
-.btnDelete:hover {
-    background-color: red;
-}
-
-.btnEdit:hover {
-    background-color: orange;
-}
+@import '../../assets/main.css';
+@import '../../assets/quizes.css';
+@import '../../assets/myQuizes.css';
 </style>
+

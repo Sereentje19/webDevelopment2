@@ -1,17 +1,17 @@
 <template>
-  <div id="header" width="100%">
-    <a href="/"> <img id="logo" src="/images/logo.png" alt="Image is not shown" width="200px"></a>
+  <div id="header">
+    <a href="/"><img id="logo" src="/images/logo.png" alt="Image is not shown"></a>
 
     <div class="navbar">
-      <a class="headerItem" id="item1" href="/">Home</a>
-      <a class="headerItem" id="item1" href="/Quizes">Quizes</a>
-      <a class="headerItem" id="purpleButton" href="/EnterCode">Enter code</a>
+      <a class="headerItem" id="headerTitles" href="/">Home</a>
+      <a class="headerItem" id="headerTitles" href="/Quizes">Quizes</a>
+      <!-- <a class="headerItem" id="purpleButton" href="/EnterCode">Enter code</a> -->
       <a class="headerItem2 btn" id="login" href="/Login">Login</a>
       <a class="headerItem12 btn" id="signUp" href="/SignUp">Sign up</a>
 
     </div>
   </div>
-  <div id="divie"></div>
+  <br><br><br><br><br><br>
 </template>
 
 <script>
@@ -19,46 +19,12 @@ export default {
   name: "header",
 };
 </script>
+<style>
+@import '../../assets/header.css';
+</style>
 
 <style>
-#divie{
-  height: 150px;
-}
-
-body {
-  background-color: rgb(255, 237, 237);
-  
-}
-
-#logo {
-  border-radius: 10px;
-}
-
-#header {
-  background-color: rgb(211, 52, 52);
-  display: flex;
-  padding: 20px;
-  position:fixed;
-  width: 100%;
-}
-
-.navbar {
-  margin-left: auto;
-}
-
-#item1 {
-  font-size: 40px;
-  text-shadow: -1.3px 1.3px 0 rgb(89, 0, 89), 1.3px 1.3px 0 rgb(89, 0, 89),
-    1.3px -1.3px 0 rgb(89, 0, 89), -1.3px -1.3px 0 rgb(89, 0, 89);
-}
-
-.headerItem {
-  color: white;
-  margin-right: 20px;
-  font-weight: bold;
-}
-
-#purpleButton:hover,
+/* #purpleButton:hover,
 #purpleButton {
   border-radius: 50px;
   border-style: solid;
@@ -73,50 +39,5 @@ body {
 #purpleButton:hover {
   background-color: rgb(89, 0, 89);
   color: rgb(255, 244, 255);
-}
-
-a:link,
-a:hover {
-  color: white;
-  text-decoration: none;
-}
-
-
-#login {
-  margin-left: 35px;
-  font-size: 25px;
-  background-color: rgb(89, 0, 89);
-  border-radius: 50px 0px 0px 50px;
-  border-style: solid;
-  color: white;
-  border-width: 3px 0px 3px 3px;
-  font-weight: bold;
-}
-
-#login:hover {
-  margin-left: 35px;
-  background-color: rgb(255, 240, 255);
-  border-color: rgb(70, 0, 70);
-  border-width: 3px 0px 3px 3px;
-  color: rgb(69, 0, 69);
-  font-weight: bold;
-}
-
-#signUp {
-  font-size: 25px;
-  color: white;
-  background-color: rgb(70, 0, 70);
-  border-radius: 0px 50px 50px 0px;
-  border-style: solid;
-  border-width: 3px 3px 3px 0px;
-  font-weight: bold;
-}
-
-#signUp:hover {
-  background-color: rgb(255, 240, 255);
-  border-color: rgb(89, 0, 89);
-  border-width: 3px 3px 3px 0px;
-  color: rgb(89, 0, 89);
-  font-weight: bold;
-}
+} */
 </style>

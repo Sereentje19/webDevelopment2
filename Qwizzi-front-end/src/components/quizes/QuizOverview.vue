@@ -2,13 +2,13 @@
     <headerNavigation />
 
     <body>
-        <div id="QuizContainer" v-for="q in quiz">
+        <div id="quizOverviewContainer" v-for="q in quiz">
             <!-- <img id="logoQ" src="/images/logo.png" alt="Image is not shown"> -->
-            <img id="logoQ" :src="q.image" alt="Image is not shown"><br>
-            <div id="text">
+            <img id="image" :src="q.image" alt="Image is not shown"><br>
+            <div id="infoQuiz">
                 <h1>{{ q.title }}</h1>
                 <p> {{ q.text }}</p>
-                <a @click="goToQuiz(q.id)" class="Play btn">Play</a>
+                <a @click="goToQuiz(q.id)" id="playBtn" class="mainButton btn">Play</a>
             </div>
         </div>
     </body>
@@ -65,57 +65,7 @@ export default {
 </script>
 
 <style>
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: rgb(255, 237, 237);
-    min-height: 570px;
-}
-
-.Play:hover,
-.Play {
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 35px;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(255, 240, 255);
-    border-color: rgb(89, 0, 89);
-    color: rgb(89, 0, 89);
-    font-weight: bold;
-    align-self: flex-start;
-    bottom: 25px;
-    position: absolute;
-}
-
-.Play:hover {
-    background-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-}
-
-#logoQ {
-    width: 50%;
-    padding: 2.5%;
-    border-radius: 50px;
-}
-
-#QuizContainer {
-    display: flex;
-    width: 100%;
-    min-height: 400px;
-}
-
-#text {
-    width: 50%;
-    padding: 2.5%;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
-    position: relative;
-}
+@import '../../assets/main.css';
+@import '../../assets/quizes.css';
+@import '../../assets/quizOverview.css';
 </style>

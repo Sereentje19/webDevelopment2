@@ -1,0 +1,27 @@
+#letterType2 {
+    margin-top: 50px;
+}
+
+#loginBtn{
+  margin-top: 40px;
+  font-size: 35px;
+}
+
+.imgcontainer,
+.container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#logIn {
+    margin-top: 100px;
+}
+
+.container {
+    padding: 55px;
+    background-color: rgb(255, 150, 45);
+    border-radius: 400px;
+}
+

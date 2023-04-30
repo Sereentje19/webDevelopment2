@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="btns">
-                    <button @click="editQuiz()" class="editBtn" type="button">Edit</button>
+                    <button @click="editQuiz()" id="createbtn" class="mainButton editBtn" type="button">Edit</button>
                 </div>
                 <br><br><br>
             </div>
@@ -171,96 +171,6 @@ export default {
 
 
 <style>
-.form-group input[type="file"]::file-selector-button {
-    background-color: rgb(89, 0, 89);
-    color: #fff;
-    padding: 8px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: 0px 15px 0px 0px;
-}
-
-#colorPurple,
-.form-group input[type="file"] {
-    color: rgb(89, 0, 89);
-}
-
-.editBtn:hover,
-.editBtn {
-    margin-top: 40px;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 35px;
-    padding: 2px 20px 2px 20px;
-    background-color: rgb(255, 240, 255);
-    border-color: rgb(89, 0, 89);
-    color: rgb(89, 0, 89);
-    font-weight: bold;
-    width: fit-content;
-    margin: 50px 20px 0px 0px;
-}
-
-.editBtn:hover {
-    background-color: rgb(89, 0, 89);
-    color: rgb(255, 244, 255);
-}
-
-
-.btns {
-    display: flex;
-    justify-content: center;
-}
-
-#titleInput {
-    display: flex;
-    flex-direction: column;
-}
-
-
-#titleInput1 {
-    display: flex;
-    flex-direction: column;
-    margin-right: 80px;
-}
-
-
-#answers {
-    display: flex;
-    flex-direction: row;
-}
-
-#createContainer {
-    margin-left: 35px;
-
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-#titleQuestion {
-    margin-top: 30px;
-    color: rgb(89, 0, 89);
-    margin-right: 20px;
-    font-weight: bold;
-    font-size: 35px;
-}
-
-#title {
-    margin-top: 30px;
-    color: rgb(89, 0, 89);
-    margin-right: 20px;
-    font-weight: bold;
-    font-size: 23px;
-}
-
-#inputTitle,
-#pswInputLogin {
-    width: 450px;
-    height: 50px;
-    border-radius: 100px;
-    padding: 15px 20px 15px 20px;
-    font-size: 18px;
-    /* border-color: rgb(89, 0, 89); */
-}
+@import '../../assets/createQuiz.css';
+@import '../../assets/main.css';
 </style>

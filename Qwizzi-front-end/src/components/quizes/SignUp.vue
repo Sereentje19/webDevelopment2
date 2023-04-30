@@ -1,5 +1,5 @@
 <template>
-    <div id="signU" width="100%">
+    <div id="signUpContainer" width="100%">
         <div class="containerSignUp">
 
             <div class="divBtns">
@@ -19,7 +19,7 @@
             <input v-model="confirmPassword" class="inputFields" type="password" placeholder="Enter password">
 
             <div class="divBtn">
-                <button @click="signUp" class="mainButtonReverse" >Sign up</button>
+                <button @click="signUp" class="mainButtonReverse" id="signUpBtn">Sign up</button>
             </div>
 
         </div>
@@ -54,13 +54,13 @@ export default {
                     }).then((res) => {
                         this.$router.push("/");
                     })
-                    .catch((error) => console.log(error));
+                        .catch((error) => console.log(error));
                 }
-                else{
+                else {
                     alert("Passwords do not match!");
                 }
             }
-            else{
+            else {
                 alert("Please fill in all fields!");
             }
         }
@@ -69,29 +69,6 @@ export default {
 </script>
 
 <style>
-#signU {
-    margin-top: 50px;
-}
-
-.containerSignUp {
-    padding: 50px 100px 50px 100px;
-    background-color: rgb(245, 200, 0);
-    border-radius: 1000px;
-    margin: 0 auto 0 auto;
-}
-
-.imgcontainer,
-.containerSignUp {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-}
-
-.letterType {
-    margin-top: 10px;
-}
-
-.letterType {
-    margin-top: 10px;
-}
+@import '../../assets/signUp.css';
+@import '../../assets/main.css';
 </style>

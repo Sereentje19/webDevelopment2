@@ -11,7 +11,7 @@
             <input v-model="password" class="inputFields" type="password" placeholder="Enter password" required>
 
             <div class="divBtn">
-                <button @click="login()" class="mainButton" type="button">Login</button>
+                <button @click="login()" class="mainButton" id="loginBtn" type="button">Login</button>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@ export default {
                 username: this.username,
                 password: this.password,
             }).then((res) => {
-                    this.$router.push("/");
+                this.$router.push("/");
             }).catch((error) => {
                 console.log(error);
                 alert("Error logging in");
@@ -48,29 +48,7 @@ export default {
 }
 </script>
 
-
 <style>
-#letterType2 {
-    margin-top: 50px;
-}
-
-.imgcontainer,
-.container {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-
-
-#logIn {
-    margin-top: 100px;
-}
-
-.container {
-    padding: 55px;
-    background-color: rgb(245, 200, 0);
-    border-radius: 400px;
-}
+@import '../../assets/main.css';
+@import '../../assets/signUp.css';
 </style>

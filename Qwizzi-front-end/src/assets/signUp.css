@@ -1,0 +1,30 @@
+#signUpBtn{
+    margin-top: 40px;
+    font-size: 35px;
+  }
+  
+  #signUpContainer {
+      margin-top: 50px;
+  }
+  
+  .containerSignUp {
+      padding: 50px 100px 50px 100px;
+      background-color: rgb(255, 150, 45);
+      border-radius: 1000px;
+      margin: 0 auto 0 auto;
+  }
+  
+  .imgcontainer,
+  .containerSignUp {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .letterType {
+      margin-top: 10px;
+  }
+  
+  .letterType {
+      margin-top: 10px;
+  }

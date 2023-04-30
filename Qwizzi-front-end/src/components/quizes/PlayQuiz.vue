@@ -10,12 +10,12 @@
             <div id="answer">
                 <div id="titleInput1">
                     <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].correctAnswer)"
-                        class="mainButtonReverse btn">{{
+                        id="quizAnswers" class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].correctAnswer }}</button>
 
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer2)"
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer2)" id="quizAnswers"
                         class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].answer2
                         }}</button>
@@ -24,13 +24,13 @@
 
             <div id="answer">
                 <div id="titleInput1">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer3)"
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer3)" id="quizAnswers"
                         class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].answer3
                         }}</button>
                 </div>
                 <div id="titleInput">
-                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer4)"
+                    <button @click="nextQuestion(this.shuffledQuestions[parseInt(this.index)].answer4)" id="quizAnswers"
                         class="mainButtonReverse btn">{{
                             this.shuffledQuestions[this.index].answer4
                         }}</button>
@@ -52,7 +52,7 @@
 
                 <br><br><br>
             </div>
-            <a href="/Quizes" class="mainButton btn">Done</a>
+            <a href="/Quizes" id="doneBtn" class="mainButton btn">Done</a>
         </div>
     </body>
     <footerNavigation />
@@ -158,74 +158,6 @@ export default {
 </script>
 
 <style>
-.nameRed,
-.restAnswers,
-.title,
-.correctAnswer {
-    font-size: 30px;
-    font-weight: bold;
-    color: rgb(89, 0, 89);
-}
-
-.nameRed {
-    color: red;
-}
-
-.title {
-    font-size: 40px;
-}
-
-.correctAnswer {
-    color: green;
-}
-
-#titleInput {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-
-#titleInput1 {
-    display: flex;
-    flex-direction: column;
-    margin-right: 80px;
-    width: 50%;
-}
-
-#answer {
-    display: flex;
-    flex-direction: row;
-}
-
-#answerContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-    left: 0;
-    margin: auto;
-    text-align: left;
-    align-items: start;
-    padding-left: 80px;
-}
-
-#questionContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-}
-
-.mainButtonReverse:hover,
-.mainButtonReverse {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-
-.mainButton,
-.mainButton:hover {
-    width: 10px;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-}
+@import '../../assets/main.css';
+@import '../../assets/playQuiz.css';
 </style>

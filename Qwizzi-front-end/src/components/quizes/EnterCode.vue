@@ -43,8 +43,6 @@
     align-content: center;
 }
 
-
-
 .submitBtn:hover {
     background-color: rgb(89, 0, 89);
     color: rgb(255, 244, 255);

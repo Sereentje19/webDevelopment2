@@ -1,0 +1,22 @@
+#buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btnDelete:hover {
+  background-color: red;
+}
+
+#btnEdit:hover {
+  background-color: rgb(255, 204, 0);
+}
+
+#myQuizBtns:hover,
+#myQuizBtns,
+#btnEdit,
+#btnEdit:hover,
+#btnDelete,
+#btnDelete:hover {
+  font-size: 120%;
+  width: fit-content;
+}

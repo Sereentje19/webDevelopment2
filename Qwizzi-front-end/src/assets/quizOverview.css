@@ -1,0 +1,29 @@
+#playBtn:hover,
+#playBtn {
+    font-size: 35px;
+    align-self: flex-start;
+    bottom: 35px;
+    position: absolute;
+}
+
+#image {
+    width: 50%;
+    padding: 2.5%;
+    border-radius: 50px;
+}
+
+#quizOverviewContainer {
+    display: flex;
+    width: 100%;
+    min-height: 475px;
+}
+
+#infoQuiz {
+    width: 50%;
+    padding: 2.5%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    position: relative;
+}
