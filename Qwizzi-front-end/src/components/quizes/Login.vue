@@ -50,5 +50,5 @@ export default {
 
 <style>
 @import '../../assets/main.css';
-@import '../../assets/signUp.css';
+@import '../../assets/login.css';
 </style>
