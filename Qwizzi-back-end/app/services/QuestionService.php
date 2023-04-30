@@ -21,5 +21,8 @@ class QuestionService {
     public function editQuestion($question, $id){
         return $this->repository->editQuestion($question, $id);
     }
+    public function deleteQuestion($id){
+        return $this->repository->deleteQuestion($id);
+    }
   
 }

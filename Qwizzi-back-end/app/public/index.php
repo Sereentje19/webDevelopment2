@@ -29,6 +29,7 @@ $router->put('/quizes/(\d+)', 'QuizController@editQuiz');
 $router->get('/questions/(\d+)', 'QuestionController@getById');
 $router->post('/questions', 'QuestionController@createQuestion');
 $router->put('/questions/(\d+)', 'QuestionController@editQuestion');
+$router->delete('/questions/(\d+)', 'QuestionController@deleteQuestion');
 
 
 // Run it!

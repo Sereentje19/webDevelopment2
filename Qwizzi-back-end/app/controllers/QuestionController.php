@@ -31,5 +31,10 @@ class QuestionController extends Controller{
         $this->service->editQuestion($question, $id);
         $this->respond(true);
     }
+    public function deleteQuestion($id)
+    {
+        $this->service->deleteQuestion($id);
+        $this->respond(true);
+    }
     
 }

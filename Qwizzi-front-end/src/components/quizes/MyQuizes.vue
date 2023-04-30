@@ -71,11 +71,13 @@ export default {
         },
         deleteQuiz(id) {
             axios
-                .delete('quizes/' + id)
-                .then((res) => {
-                    this.getAll();
-                })
-                .catch(error => console.log(error))
+                axios.delete('questions/' + id, {
+                }).then((res) => {
+                    axios.delete('quizes/' + id)
+                        .then((res) => {
+                            this.getAll();
+                        }).catch(error => console.log(error))
+                }).catch((error) => console.log(error));
         },
         editQuiz(id) {
             this.$router.push("EditQuiz/" + id);
