@@ -38,4 +38,14 @@ class QuestionRepository extends Repository
 
         $stmt->execute([$quizId, $questions->question, $questions->image, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
     }
+    public function editQuestion($question, $id)
+    {
+        try {
+            $stmt = $this->connection->prepare("UPDATE Questions 
+            SET question = ?, correctAnswer = ?, answer2 = ?, answer3 = ?, answer4 = ? WHERE id = ?");
+            $stmt->execute([$question->question, $question->correctAnswer, $question->answer2, $question->answer3, $question->answer4, $id]);
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
 }

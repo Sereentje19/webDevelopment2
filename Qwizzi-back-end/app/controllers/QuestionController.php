@@ -25,5 +25,11 @@ class QuestionController extends Controller{
         $this->service->createQuestion(1, $question);
 
     }
+    public function editQuestion($id)
+    {
+        $question = $this->createObjectFromPostedJson("Models\\Questions");
+        $this->service->editQuestion($question, $id);
+        $this->respond(true);
+    }
     
 }

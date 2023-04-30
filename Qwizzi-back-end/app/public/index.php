@@ -28,6 +28,7 @@ $router->put('/quizes/(\d+)', 'QuizController@editQuiz');
 // routes for the Questions endpoint
 $router->get('/questions/(\d+)', 'QuestionController@getById');
 $router->post('/questions', 'QuestionController@createQuestion');
+$router->put('/questions/(\d+)', 'QuestionController@editQuestion');
 
 
 // Run it!

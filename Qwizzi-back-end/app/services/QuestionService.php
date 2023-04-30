@@ -18,5 +18,8 @@ class QuestionService {
     public function createQuestion($quizId, $questions){
         $this->repository->createQuestion($quizId, $questions);
     }
+    public function editQuestion($question, $id){
+        return $this->repository->editQuestion($question, $id);
+    }
   
 }

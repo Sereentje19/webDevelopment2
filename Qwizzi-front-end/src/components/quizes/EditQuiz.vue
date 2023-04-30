@@ -104,6 +104,7 @@ export default {
             fileContents: null,
             questions: [
                 {
+                    id: 0,
                     question: '',
                     correctAnswer: '',
                     answer2: '',
@@ -150,9 +151,19 @@ export default {
                 title: this.quiz[0].title,
                 text: this.quiz[0].text,
             }).then((res) => {
+                for (let i = 0; i < this.questions.length; i++) {
+                    axios.put('questions/' + this.questions[i].id, {
+                        id: this.questions[i].id,
+                        question: this.questions[i].question,
+                        correctAnswer: this.questions[i].correctAnswer,
+                        answer2: this.questions[i].answer2,
+                        answer3: this.questions[i].answer3,
+                        answer4: this.questions[i].answer4,
+                    }).catch((error) => console.log(error));
+                }
                 // this.$router.push("/");
-            })
-                .catch((error) => console.log(error));
+            }).catch((error) => console.log(error));
+
         },
     },
 };
