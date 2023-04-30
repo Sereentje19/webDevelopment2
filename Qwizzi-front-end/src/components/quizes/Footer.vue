@@ -1,7 +1,7 @@
 <template>
   <br><br><br>
   <div id="footer">
-    
+
     <div class="icons">
       <a href="#top" id="arrowUp">
         <arrowUp />
@@ -49,5 +49,5 @@ export default {
 
 
 <style>
-  @import '../../assets/footer.css';
+@import '../../assets/footer.css';
 </style>

@@ -22,7 +22,7 @@
 
                 <label id="title" for="title"><b>Upload image</b></label>
                 <div class="form-group">
-                    <input type="file" @change="onFileChange">
+                    <input type="file" id="file" @change="onFileChange">
                     <p id="colorPurple"><small>Picture &lt; 64mb</small>
                     </p>
                 </div>
@@ -97,7 +97,7 @@ export default {
     },
     data() {
         return {
-            file: null,
+            selectedFile: null,
             fileContents: null,
             questions: [
                 {
@@ -112,15 +112,13 @@ export default {
     },
     methods: {
         onFileChange(event) {
-            this.file = event.target.files[0];
-            this.readFile();
-        },
-        readFile() {
+            this.selectedFile = event.target.files[0]
+
             const reader = new FileReader();
             reader.onload = () => {
                 this.fileContents = reader.result;
             };
-            reader.readAsDataURL(this.file);
+            reader.readAsDataURL(this.selectedFile);
         },
         addQuestion() {
             this.questions.push({
@@ -132,11 +130,15 @@ export default {
             });
         },
         create() {
-            console.log(this.fileContents);
-            axios.post('quizes', {
-                title: this.title,
-                text: this.text,
-                image: this.fileContents,
+            let formData = new FormData();
+            formData.append('title', this.title);
+            formData.append('text', this.text);
+            formData.append('file', this.selectedFile);
+
+            axios.post('quizes', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }).then((r) => {
                 for (let i = 0; i < this.questions.length; i++) {
                     axios.post('questions', {
@@ -147,7 +149,7 @@ export default {
                         answer4: this.questions[i].answer4,
                     }).catch((error) => console.log(error));
                 }
-                // this.$router.push("Quizes");
+                this.$router.push("/");
             }).catch((error) => console.log(error));
         },
     },

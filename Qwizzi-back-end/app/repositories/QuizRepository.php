@@ -74,8 +74,8 @@ class QuizRepository extends Repository
     
     function createQuiz($quiz)
     {
-        $quiz->image = base64_encode($quiz->image);
-        $quiz->userId = 1;
+        // $quiz->image = base64_encode($quiz->image);
+        $quiz->userId = 11;
         $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 
         VALUES (?,?,?,?)");
         $stmt->execute([$quiz->userId, $quiz->image, $quiz->title, $quiz->text]);

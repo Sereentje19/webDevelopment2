@@ -45,6 +45,10 @@ class QuizController extends Controller
     {
         try {
             $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
+
+            $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
+            $quiz->text = $_POST['text'];
+            $quiz->title = $_POST['title'];
             $this->service->createQuiz($quiz);
             $this->respond($quiz);
         } catch (Exception $e) {

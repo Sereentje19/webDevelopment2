@@ -26,8 +26,6 @@ class UsersController extends Controller{
         catch(Exception $e){
             $this->respondWithError(500, $e->getMessage());
         }
-        
-
     }
 
     public function createUser(){
@@ -39,7 +37,6 @@ class UsersController extends Controller{
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
         }
-
     }
     
 }
