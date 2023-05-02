@@ -35,7 +35,7 @@ class QuestionRepository extends Repository
         (quizId, question, correctAnswer, answer2, answer3, answer4) 
         VALUES (?,?,?,?,?,?)");
 
-        $stmt->execute([$quizId, $questions->question, $questions->image, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
+        $stmt->execute([$quizId, $questions->question, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
     }
     public function editQuestion($question, $id)
     {

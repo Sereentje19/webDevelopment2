@@ -63,6 +63,7 @@
                     </div>
                 </div>
                 <div class="btns">
+                    <button @click="addQuestion()" id="createbtn" class="mainButton" type="button">Add question</button>
                     <button @click="editQuiz()" id="createbtn" class="mainButton editBtn" type="button">Edit</button>
                 </div>
                 <br><br><br>
@@ -135,6 +136,15 @@ export default {
             }).catch((error) => console.log(error));
     },
     methods: {
+        addQuestion() {
+            this.questions.push({
+                question: '',
+                correctAnswer: '',
+                answer2: '',
+                answer3: '',
+                answer4: ''
+            });
+        },
         onFileChange(event) {
             this.file = event.target.files[0];
             this.readFile();
@@ -160,10 +170,10 @@ export default {
                         answer3: this.questions[i].answer3,
                         answer4: this.questions[i].answer4,
                     }).then((res) => {
-                        this.$router.push("/");
+                        this.$router.push("/MyQuizes");
                     }).catch((error) => console.log(error));
                 }
-                this.$router.push("/");
+                this.$router.push("/MyQuizes");
             }).catch((error) => console.log(error));
         },
     },
