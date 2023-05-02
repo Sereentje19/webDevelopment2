@@ -22,7 +22,7 @@ class QuestionController extends Controller{
     }
     public function createQuestion(){
         $question = $this->createObjectFromPostedJson("Models\\Questions");
-        $this->service->createQuestion(1, $question);
+        $this->service->createQuestion($question);
 
     }
     public function editQuestion($id)

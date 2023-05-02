@@ -38,6 +38,8 @@ export default {
                 username: this.username,
                 password: this.password,
             }).then((res) => {
+                axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.jwt;
+                localStorage.setItem("jwt", res.data.jwt)
                 this.$router.push("/");
             }).catch((error) => {
                 console.log(error);

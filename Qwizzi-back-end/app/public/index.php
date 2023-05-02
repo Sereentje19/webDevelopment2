@@ -20,7 +20,7 @@ $router->post('/users/signUp', 'UsersController@createUser');
 // routes for the Quizes endpoint
 $router->get('/quizes', 'QuizController@getAllQuizes');
 $router->get('/quizes/(\d+)', 'QuizController@getOneQuiz');
-$router->get('/myQuizes/(\d+)', 'QuizController@getQuizesByUserId');
+$router->get('/myQuizes', 'QuizController@getQuizesByUserId');
 $router->post('/quizes', 'QuizController@createQuiz');
 $router->delete('/quizes/(\d+)', 'QuizController@deleteQuiz');
 $router->put('/quizes/(\d+)', 'QuizController@editQuiz');

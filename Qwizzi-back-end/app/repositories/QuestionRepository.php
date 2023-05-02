@@ -25,16 +25,15 @@ class QuestionRepository extends Repository
         }
     }
 
-    public function createQuestion($id, $questions)
+    public function createQuestion($questions)
     {
         $stmtQuiz = $this->connection->prepare("SELECT max(id) FROM Quizes");
         $stmtQuiz->execute();
         $quizId = $stmtQuiz->fetchColumn();
 
-        $questions->image = "";
         $stmt = $this->connection->prepare("INSERT INTO Questions
-        (quizId, question, image, correctAnswer, answer2, answer3, answer4) 
-        VALUES (?,?,?,?,?,?,?)");
+        (quizId, question, correctAnswer, answer2, answer3, answer4) 
+        VALUES (?,?,?,?,?,?)");
 
         $stmt->execute([$quizId, $questions->question, $questions->image, $questions->correctAnswer, $questions->answer2, $questions->answer3, $questions->answer4]);
     }

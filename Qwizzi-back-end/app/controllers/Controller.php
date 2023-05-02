@@ -8,34 +8,33 @@ use \Firebase\JWT\Key;
 
 class Controller
 {
-    // function checkForJwt() {
-    //      // Check for token header
-    //      if(!isset($_SERVER['HTTP_AUTHORIZATION'])) {
-    //         $this->respondWithError(401, "No token provided");
-    //         return;
-    //     }
 
-    //     // Read JWT from header
-    //     $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
-    //     // Strip the part "Bearer " from the header
-    //     $arr = explode(" ", $authHeader);
-    //     $jwt = $arr[1];
+    function checkForJwt()
+    {
+        // Check for token header
+        if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            throw new Exception("No token provided", 401);
+        }
 
-    //     // Decode JWT
-    //     $secret_key = "YOUR_SECRET_KEY";
+        // Read JWT from header
+        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+        
+        // Strip the part "Bearer " from the header
+        $arr = explode(" ", $authHeader);
+        $jwt = $arr[1];
 
-    //     if ($jwt) {
-    //         try {
-    //             $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
-    //             // username is now found in
-    //             // echo $decoded->data->username;
-    //             return $decoded;
-    //         } catch (Exception $e) {
-    //             $this->respondWithError(401, $e->getMessage());
-    //             return;
-    //         }
-    //     }
-    // }
+        // Decode JWT
+        $secret_key = "SECRET_KEY";
+
+        if ($jwt) {
+            try {
+                $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
+                return $decoded->data;
+            } catch (Exception $e) {
+                throw new Exception("Invalid token", 401);
+            }
+        }
+    }
 
     function respond($data)
     {

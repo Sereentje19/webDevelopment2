@@ -137,7 +137,8 @@ export default {
 
             axios.post('quizes', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: "Bearer " + localStorage.getItem("jwt")
                 }
             }).then((r) => {
                 for (let i = 0; i < this.questions.length; i++) {

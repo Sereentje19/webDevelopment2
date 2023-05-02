@@ -1,0 +1,32 @@
+
+// $secret_key = "SECRET_KEY";
+
+// $issuer = "THE_ISSUER"; // this can be the domain/servername that issues the token
+// $audience = "THE_AUDIENCE"; // this can be the domain/servername that checks the token
+
+// $issuedAt = time(); // issued at
+// $notbefore = $issuedAt; //not valid before 
+
+// $expire = $issuedAt + 9000;
+// $payload = array(
+//     "iss" => $issuer,
+//     "aud" => $audience,
+//     "iat" => $issuedAt,
+//     "nbf" => $notbefore,
+//     "exp" => $expire,
+//     "data" => array(
+//         "id" => $user->id,
+//         "username" => $user->username,
+//         "email" => $user->email
+//     )
+// );
+
+// $jwt = JWT::encode($payload, $secret_key, 'HS256');
+
+// return
+//     array(
+//         "message" => "Successful login.",
+//         "jwt" => $jwt,
+//         "username" => $user->username,
+//         "expireAt" => $expire
+//     );

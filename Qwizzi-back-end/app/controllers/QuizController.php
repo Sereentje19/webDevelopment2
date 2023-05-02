@@ -36,16 +36,18 @@ class QuizController extends Controller
         $this->service->deleteQuiz($id);
         $this->respond(true);
     }
-    public function getQuizesByUserId($userId)
+    public function getQuizesByUserId()
     {
-        $quizes = $this->service->getQuizesByUserId($userId);
+        $data = $this->checkForJwt();
+        $quizes = $this->service->getQuizesByUserId($data->id);
         $this->respond($quizes);
     }
     public function createQuiz()
     {
         try {
             $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
-
+            $data = $this->checkForJwt();
+            $quiz->userId = $data->id;
             $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
             $quiz->text = $_POST['text'];
             $quiz->title = $_POST['title'];

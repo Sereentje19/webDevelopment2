@@ -62,7 +62,11 @@ export default {
     methods: {
         getAll() {
             axios
-                .get('myQuizes/' + 11)
+                .get('myQuizes', {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("jwt")
+                    }
+                })
                 .then((res) => {
                     this.quizes = res.data;
                 })
