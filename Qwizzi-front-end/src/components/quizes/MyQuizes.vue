@@ -93,8 +93,7 @@ export default {
 </script>
 
 <style>
-@import '../../assets/main.css';
-@import '../../assets/quizes.css';
-@import '../../assets/myQuizes.css';
+@import '../../assets/css/quizes.css';
+@import '../../assets/css/myQuizes.css';
 </style>
 

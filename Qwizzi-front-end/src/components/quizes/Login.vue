@@ -51,6 +51,5 @@ export default {
 </script>
 
 <style>
-@import '../../assets/main.css';
-@import '../../assets/login.css';
+@import '../../assets/css/login.css';
 </style>

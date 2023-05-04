@@ -6,7 +6,7 @@ import footer from './components/quizes/Footer.vue';
 import header from './components/quizes/Header.vue';
 import router from './router'
 
-import './assets/main.css'
+import './assets/css/main.css'
 
 const app = createApp(App)
 

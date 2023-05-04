@@ -158,6 +158,5 @@ export default {
 </script>
 
 <style>
-@import '../../assets/createQuiz.css';
-@import '../../assets/main.css';
+@import '../../assets/css/createQuiz.css';
 </style>

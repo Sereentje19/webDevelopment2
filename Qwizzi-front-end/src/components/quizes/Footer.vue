@@ -49,5 +49,5 @@ export default {
 
 
 <style>
-@import '../../assets/footer.css';
+@import '../../assets/css/footer.css';
 </style>

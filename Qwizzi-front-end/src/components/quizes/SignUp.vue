@@ -69,6 +69,5 @@ export default {
 </script>
 
 <style>
-@import '../../assets/signUp.css';
-@import '../../assets/main.css';
+@import '../../assets/css/signUp.css';
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <a href="/"><img id="logo" src="/images/logo.png" alt="Image is not shown"></a>
+    <a href="/"><img id="logo" src="../../assets/images/logo.png" alt="Image is not shown"></a>
 
     <div class="navbar">
       <a class="headerItem" id="headerTitles" href="/">Home</a>
@@ -20,7 +20,7 @@ export default {
 };
 </script>
 <style>
-@import '../../assets/header.css';
+@import '../../assets/css/header.css';
 </style>
 
 <style>

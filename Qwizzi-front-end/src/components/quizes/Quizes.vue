@@ -69,6 +69,5 @@ export default {
 
 
 <style>
-@import '../../assets/main.css';
-@import '../../assets/quizes.css';
+@import '../../assets/css/quizes.css';
 </style>

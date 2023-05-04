@@ -3,7 +3,6 @@
 
     <body>
         <div id="quizOverviewContainer" v-for="q in quiz">
-            <!-- <img id="logoQ" src="/images/logo.png" alt="Image is not shown"> -->
             <img id="image" :src="q.image" alt="Image is not shown"><br>
             <div id="infoQuiz">
                 <h1>{{ q.title }}</h1>
@@ -65,7 +64,6 @@ export default {
 </script>
 
 <style>
-@import '../../assets/main.css';
-@import '../../assets/quizes.css';
-@import '../../assets/quizOverview.css';
+@import '../../assets/css/quizes.css';
+@import '../../assets/css/quizOverview.css';
 </style>
