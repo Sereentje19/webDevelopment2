@@ -73,7 +73,6 @@ export default {
                 .catch(error => console.log(error))
         },
         deleteQuiz(id) {
-            axios
             axios.delete('questions/' + id, {
             }).then((res) => {
                 axios.delete('quizes/' + id)

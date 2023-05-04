@@ -48,10 +48,20 @@ class QuestionRepository extends Repository
             echo $e;
         }
     }
-    public function deleteQuestion($id)
+    public function deleteQuestionOnQuizId($id)
     {
         try {
             $stmt = $this->connection->prepare("DELETE FROM Questions WHERE quizId = ?");
+            $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
+    public function deleteQuestionOnId($id)
+    {
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM Questions WHERE id = ?");
             $stmt->execute([$id]);
         } catch (PDOException $e) {
             echo $e;

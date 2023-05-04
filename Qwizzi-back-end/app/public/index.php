@@ -23,13 +23,14 @@ $router->get('/quizes/(\d+)', 'QuizController@getOneQuiz');
 $router->get('/myQuizes', 'QuizController@getQuizesByUserId');
 $router->post('/quizes', 'QuizController@createQuiz');
 $router->delete('/quizes/(\d+)', 'QuizController@deleteQuiz');
-$router->put('/quizes/(\d+)', 'QuizController@editQuiz');
+$router->post('/quizes/(\d+)', 'QuizController@editQuiz');
 
 // routes for the Questions endpoint
 $router->get('/questions/(\d+)', 'QuestionController@getById');
 $router->post('/questions', 'QuestionController@createQuestion');
 $router->put('/questions/(\d+)', 'QuestionController@editQuestion');
-$router->delete('/questions/(\d+)', 'QuestionController@deleteQuestion');
+$router->delete('/questions/(\d+)', 'QuestionController@deleteQuestionOnQuizId');
+$router->delete('/questionsOnId/(\d+)', 'QuestionController@deleteQuestionOnId');
 
 
 // Run it!

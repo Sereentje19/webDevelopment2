@@ -22,14 +22,14 @@
 
                 <label id="title" for="title"><b>Upload image</b></label>
                 <div class="form-group">
-                    <input type="file" @change="onFileChange">
+                    <input type="file" id="file" @change="onFileChange">
                     <p id="colorPurple"><small>Picture &lt; 64mb</small>
                     </p>
                 </div>
 
 
 
-                <div v-for="(quest, index) in questions" :key="index">
+                <div v-for="(quest, index) in editedQuestions" :key="index">
                     <br><br><br>
                     <div id="titleInput1">
                         <label id="titleQuestion" for="title"><b>Question {{ index + 1 }}</b></label>
@@ -61,6 +61,8 @@
                                 name="title">
                         </div>
                     </div>
+                    <button @click="deleteQuestion(quest.id, index)" id="createbtn" class="mainButton" type="button">Delete
+                        question</button>
                 </div>
                 <div class="btns">
                     <button @click="addQuestion()" id="createbtn" class="mainButton" type="button">Add question</button>
@@ -101,9 +103,10 @@ export default {
     },
     data() {
         return {
-            file: null,
+            selectedFile: null,
             fileContents: null,
-            questions: [
+            length: 0,
+            editedQuestions: [
                 {
                     id: 0,
                     question: '',
@@ -118,7 +121,8 @@ export default {
                     title: '',
                     text: ''
                 }
-            ]
+            ],
+            deleteId: [],
         }
     },
     mounted() {
@@ -132,46 +136,98 @@ export default {
         axios
             .get('questions/' + this.id)
             .then((res) => {
-                this.questions = res.data;
+                this.length = res.data.length;
+                this.editedQuestions = res.data;
             }).catch((error) => console.log(error));
     },
     methods: {
         addQuestion() {
-            this.questions.push({
+            this.editedQuestions.push({
                 question: '',
                 correctAnswer: '',
                 answer2: '',
                 answer3: '',
                 answer4: ''
-            });
+            }
+            );
+        },
+        deleteQuestion(id, index) {
+            this.deleteId.push(id);
+            this.editedQuestions.splice(index, 1);
         },
         onFileChange(event) {
-            this.file = event.target.files[0];
-            this.readFile();
-        },
-        readFile() {
+            this.selectedFile = event.target.files[0]
+
             const reader = new FileReader();
             reader.onload = () => {
                 this.fileContents = reader.result;
             };
-            reader.readAsDataURL(this.file);
+            reader.readAsDataURL(this.selectedFile);
         },
         editQuiz() {
-            axios.put("quizes/" + this.id, {
-                title: this.quiz[0].title,
-                text: this.quiz[0].text,
+            let quizData = new FormData();
+            quizData.append('title', this.quiz[0].title);
+            quizData.append('text', this.quiz[0].text);
+            quizData.append('file', this.selectedFile);
+
+            axios.post("quizes/" + this.id, quizData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+
             }).then((res) => {
-                for (let i = 0; i < this.questions.length; i++) {
-                    axios.put('questions/' + this.questions[i].id, {
-                        id: this.questions[i].id,
-                        question: this.questions[i].question,
-                        correctAnswer: this.questions[i].correctAnswer,
-                        answer2: this.questions[i].answer2,
-                        answer3: this.questions[i].answer3,
-                        answer4: this.questions[i].answer4,
-                    }).then((res) => {
-                        this.$router.push("/MyQuizes");
-                    }).catch((error) => console.log(error));
+                if (this.editedQuestions.length <= this.length) {
+                    for (let i = 0; i <= this.editedQuestions.length; i++) {
+
+                        if (this.editedQuestions.length < i) {
+
+                            axios.put('questions/' + this.editedQuestions[i].id, {
+                                id: this.editedQuestions[i].id,
+                                question: this.editedQuestions[i].question,
+                                correctAnswer: this.editedQuestions[i].correctAnswer,
+                                answer2: this.editedQuestions[i].answer2,
+                                answer3: this.editedQuestions[i].answer3,
+                                answer4: this.editedQuestions[i].answer4,
+                            }).then((res) => {
+                                this.$router.push("/MyQuizes");
+                            }).catch((error) => console.log(error));
+                        }
+                        else {
+                            for (let j = 0; j < this.deleteId.length; j++) {
+
+                                axios.delete('questionsOnId/' + this.deleteId[j])
+                                    .then((res) => {
+                                        this.$router.push("/MyQuizes");
+                                    }).catch((error) => console.log(error));
+                            }
+
+                        }
+                    }
+                } else if (this.editedQuestions.length > this.length) {
+                    for (let i = 0; i < this.editedQuestions.length; i++) {
+
+                        if (i < this.length) {
+                            axios.put('questions/' + this.editedQuestions[i].id, {
+                                id: this.editedQuestions[i].id,
+                                question: this.editedQuestions[i].question,
+                                correctAnswer: this.editedQuestions[i].correctAnswer,
+                                answer2: this.editedQuestions[i].answer2,
+                                answer3: this.editedQuestions[i].answer3,
+                                answer4: this.editedQuestions[i].answer4,
+                            }).then((res) => {
+                                this.$router.push("/MyQuizes");
+                            }).catch((error) => console.log(error));
+                        }
+                        else {
+                            axios.post('questions', {
+                                question: this.editedQuestions[i].question,
+                                correctAnswer: this.editedQuestions[i].correctAnswer,
+                                answer2: this.editedQuestions[i].answer2,
+                                answer3: this.editedQuestions[i].answer3,
+                                answer4: this.editedQuestions[i].answer4,
+                            }).catch((error) => console.log(error));
+                        }
+                    }
                 }
                 this.$router.push("/MyQuizes");
             }).catch((error) => console.log(error));

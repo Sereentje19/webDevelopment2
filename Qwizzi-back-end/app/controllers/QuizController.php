@@ -25,12 +25,7 @@ class QuizController extends Controller
         $quizes = $this->service->getOneQuiz($id);
         $this->respond($quizes);
     }
-    public function editQuiz($id)
-    {
-        $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
-        $this->service->editQuiz($quiz, $id);
-        $this->respond(true);
-    }
+
     public function deleteQuiz($id)
     {
         $this->service->deleteQuiz($id);
@@ -48,11 +43,31 @@ class QuizController extends Controller
             $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
             $data = $this->checkForJwt();
             $quiz->userId = $data->id;
-            $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
-            $quiz->text = $_POST['text'];
-            $quiz->title = $_POST['title'];
+            $quiz = $this->getQuizInfo($quiz);
             $this->service->createQuiz($quiz);
             $this->respond($quiz);
+        } catch (Exception $e) {
+            $this->respondWithError(500, $e->getMessage());
+        }
+    }
+    public function editQuiz($id)
+    {
+        try {
+            $quiz = $this->createObjectFromPostedJson("Models\\Quizes");
+            $quiz = $this->getQuizInfo($quiz);
+            $this->service->editQuiz($quiz, $id);
+            $this->respond(true);
+        } catch (Exception $e) {
+            $this->respondWithError(500, $e->getMessage());
+        }
+    }
+    private function getQuizInfo($quiz)
+    {
+        try {
+            $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
+            $quiz->text = htmlspecialchars($_POST['text']);
+            $quiz->title = htmlspecialchars($_POST['title']);
+            return $quiz;
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
         }

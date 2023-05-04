@@ -51,8 +51,8 @@ class QuizRepository extends Repository
     {
         try {
             $stmt = $this->connection->prepare("UPDATE Quizes 
-            SET title = ?, text = ? WHERE id = ?");
-            $stmt->execute([$quiz->title, $quiz->text, $id]);
+            SET image = ?, title = ?, text = ? WHERE id = ?");
+            $stmt->execute([$quiz->image, $quiz->title, $quiz->text, $id]);
         } catch (PDOException $e) {
             echo $e;
         }
