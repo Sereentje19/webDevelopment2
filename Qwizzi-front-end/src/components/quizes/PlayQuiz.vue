@@ -3,7 +3,6 @@
 
     <body>
         <div id="questionContainer" v-if="this.index < questions.length">
-            <!-- {{ this.index + 1 }} -->
             <div class="name">{{ this.questions[this.index].question }}</div>
             <br><br><br>
 

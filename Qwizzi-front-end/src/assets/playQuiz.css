@@ -44,7 +44,7 @@
 #answerContainer {
     display: flex;
     flex-direction: column;
-    margin: 30px;
+    padding: 30px;
     padding-left: 50px;
 }
 
