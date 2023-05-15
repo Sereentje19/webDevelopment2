@@ -5,7 +5,7 @@
     <body>
         <div class="headerQuizes">
             <h1 id="QuizesTitle">Quizes</h1>
-            <a href="/MyQuizes" id="myQuizesBtn" class="mainButtonReverse btn">My quizes</a>
+            <a @click="goToMyQuizes" id="myQuizesBtn" class="mainButtonReverse btn">My quizes</a>
         </div>
         <br>
         <div id="quizContainer">
@@ -18,6 +18,9 @@
                     <a @click="goToQuiz(quiz.id)" class="mainButtonReverse quizBtn btn">Go to quiz</a>
                 </div>
             </ul>
+            <div v-if="!this.quizes || this.quizes.length === 0">
+                <h4>There are no quizes made yet.</h4>
+            </div>
             <div v-if="quizes.length % 3 != 0 && (quizes.length + 1) % 3 != 0" id="voidDiv60"></div>
             <div v-else-if="quizes.length % 3 != 0" id="voidDiv30"></div>
         </div>
@@ -53,7 +56,9 @@ export default {
     },
     mounted() {
         axios
-            .get('quizes')
+            .get('quizes', {
+
+            })
             .then((res) => {
                 this.quizes = res.data;
             })
@@ -62,6 +67,16 @@ export default {
     methods: {
         goToQuiz(id) {
             this.$router.push("QuizOverview/" + id);
+        },
+        goToMyQuizes() {
+            const token = localStorage.getItem("jwt")
+
+            if (token) {
+                this.$router.push("MyQuizes");
+            }
+            else{
+                this.$router.push("login");
+            }
         },
     },
 };

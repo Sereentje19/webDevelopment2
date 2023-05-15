@@ -40,7 +40,7 @@ export default {
             }).then((res) => {
                 axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.jwt;
                 localStorage.setItem("jwt", res.data.jwt)
-                this.$router.push("/");
+                this.$router.push("/MyQuizes");
                 console.log(res.data.jwt);
             }).catch((error) => {
                 console.log(error);

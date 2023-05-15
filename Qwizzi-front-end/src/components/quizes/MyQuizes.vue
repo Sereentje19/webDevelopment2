@@ -22,6 +22,9 @@
                     </div>
                 </div>
             </ul>
+            <div v-if="!this.quizes || this.quizes.length === 0">
+                <h4>There are no quizes made yet.</h4>
+            </div>
             <div v-if="quizes.length % 3 != 0 && (quizes.length + 1) % 3 != 0" id="voidDiv60"></div>
             <div v-else-if="quizes.length % 3 != 0" id="voidDiv30"></div>
         </div>

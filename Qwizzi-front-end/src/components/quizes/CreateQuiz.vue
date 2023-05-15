@@ -12,11 +12,11 @@
                 <div id="answers">
                     <div id="titleInput1">
                         <label id="title" for="title"><b>Title</b></label>
-                        <input v-model="title" id="inputTitle" type="text" placeholder="Enter title" name="title" required>
+                        <input v-model="title" id="inputTitle" type="text" placeholder="Enter title" name="title">
                     </div>
                     <div id="titleInput1">
                         <label id="title" for="title"><b>Info quiz</b></label>
-                        <input v-model="text" id="inputTitle" type="text" placeholder="Enter info" name="title" required>
+                        <input v-model="text" id="inputTitle" type="text" placeholder="Enter info" name="title">
                     </div>
                 </div>
 
@@ -26,7 +26,6 @@
                     <p id="colorPurple"><small>Picture &lt; 64mb</small>
                     </p>
                 </div>
-
 
 
                 <div v-for="(quest, index) in questions" :key="index">
@@ -40,7 +39,7 @@
                         <div id="titleInput1">
                             <label id="title" for="title"><b>Correct answer</b></label>
                             <input v-model="quest.correctAnswer" id="inputTitle" type="text"
-                                placeholder="Enter Correct answer" name="title">
+                                placeholder="Enter Correct answer" name="title" required>
                         </div>
                         <div id="titleInput">
                             <label id="title" for="title"><b>Answer 2</b></label>
@@ -111,6 +110,27 @@ export default {
         }
     },
     methods: {
+        validateForm() {
+
+            if (!this.title || !this.text) {
+                alert('You did not fill out al quiz fields. Please do so!');
+                return false; 
+            }
+
+            if(!this.selectedFile){
+                alert('You did not upload an image. Please do so!');
+                return false;
+            }
+
+            for (const quest of this.questions) {
+                if (!quest.question || !quest.correctAnswer || !quest.answer2 || !quest.answer3 || !quest.answer4) {
+                    alert('You did not fill out all question fields. Please do so!');
+                    return false; 
+                }
+            }
+
+            return true;
+        },
         onFileChange(event) {
             this.selectedFile = event.target.files[0]
 
@@ -130,28 +150,30 @@ export default {
             });
         },
         create() {
-            let formData = new FormData();
-            formData.append('title', this.title);
-            formData.append('text', this.text);
-            formData.append('file', this.selectedFile);
+            if (this.validateForm()) {
+                let formData = new FormData();
+                formData.append('title', this.title);
+                formData.append('text', this.text);
+                formData.append('file', this.selectedFile);
 
-            axios.post('quizes', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: "Bearer " + localStorage.getItem("jwt")
-                }
-            }).then((r) => {
-                for (let i = 0; i < this.questions.length; i++) {
-                    axios.post('questions', {
-                        question: this.questions[i].question,
-                        correctAnswer: this.questions[i].correctAnswer,
-                        answer2: this.questions[i].answer2,
-                        answer3: this.questions[i].answer3,
-                        answer4: this.questions[i].answer4,
-                    }).catch((error) => console.log(error));
-                }
-                this.$router.push("/MyQuizes");
-            }).catch((error) => console.log(error));
+                axios.post('quizes', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: "Bearer " + localStorage.getItem("jwt")
+                    }
+                }).then((r) => {
+                    for (let i = 0; i < this.questions.length; i++) {
+                        axios.post('questions', {
+                            question: this.questions[i].question,
+                            correctAnswer: this.questions[i].correctAnswer,
+                            answer2: this.questions[i].answer2,
+                            answer3: this.questions[i].answer3,
+                            answer4: this.questions[i].answer4,
+                        }).catch((error) => console.log(error));
+                    }
+                    this.$router.push("/MyQuizes");
+                }).catch((error) => console.log(error));
+            }
         },
     },
 };
