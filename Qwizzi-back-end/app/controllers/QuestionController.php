@@ -17,12 +17,12 @@ class QuestionController extends Controller{
     public function getById($quizId)
     {
         $questions = $this->service->getById($quizId);
-
         $this->respond($questions);
     }
     public function createQuestion(){
         $question = $this->createObjectFromPostedJson("Models\\Questions");
         $this->service->createQuestion($question);
+        $this->respond($question);
 
     }
     public function editQuestion($id)

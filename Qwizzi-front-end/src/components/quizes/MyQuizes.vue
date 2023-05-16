@@ -65,7 +65,7 @@ export default {
     methods: {
         getAll() {
             axios
-                .get('myQuizes', {
+                .get('quizes/user', {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("jwt")
                     }

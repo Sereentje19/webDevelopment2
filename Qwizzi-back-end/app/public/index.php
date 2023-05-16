@@ -19,8 +19,8 @@ $router->post('/users/signUp', 'UsersController@createUser');
 
 // routes for the Quizes endpoint
 $router->get('/quizes', 'QuizController@getAllQuizes');
+$router->get('/quizes/user', 'QuizController@getQuizesByUserId');
 $router->get('/quizes/(\d+)', 'QuizController@getOneQuiz');
-$router->get('/myQuizes', 'QuizController@getQuizesByUserId');
 $router->post('/quizes', 'QuizController@createQuiz');
 $router->delete('/quizes/(\d+)', 'QuizController@deleteQuiz');
 $router->post('/quizes/(\d+)', 'QuizController@editQuiz');

@@ -62,8 +62,8 @@ class UsersRepository extends Repository
     function createUser($user)
     {
         //inser the user into the table users and return the user
-        $stmt = $this->connection->prepare("INSERT INTO Users (username, email, password) 
-        VALUES (?,?,?)");
+        $stmt = $this->connection->prepare("INSERT INTO Users 
+        (username, email, password) VALUES (?,?,?)");
         $stmt->execute([$user->username, $user->email, $this->hashPassword($user->password)]);
     }
 }

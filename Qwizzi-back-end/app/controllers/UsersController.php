@@ -22,10 +22,7 @@ class UsersController extends Controller
             $data = $this->createObjectFromPostedJson("Models\\Users");
             $user = $this->service->checkUsernamePassword($data->username, $data->password);
 
-            // generate jwt for the user
             $tokenResponse = $this->generateJwt($user);
-
-            //respond with the created token and the user
             $this->respond($tokenResponse);
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
