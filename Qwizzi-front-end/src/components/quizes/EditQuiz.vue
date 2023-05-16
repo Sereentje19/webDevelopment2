@@ -182,6 +182,33 @@ export default {
             };
             reader.readAsDataURL(this.selectedFile);
         },
+        putQuestionsOnEdit(i) {
+            axios.put('questions/' + this.editedQuestions[i].id, {
+                id: this.editedQuestions[i].id,
+                question: this.editedQuestions[i].question,
+                correctAnswer: this.editedQuestions[i].correctAnswer,
+                answer2: this.editedQuestions[i].answer2,
+                answer3: this.editedQuestions[i].answer3,
+                answer4: this.editedQuestions[i].answer4,
+            }).then((res) => {
+                this.$router.push("/MyQuizes");
+            }).catch((error) => console.log(error));
+        },
+        deleteQuestionOnEdit(j) {
+            axios.delete('questionsOnId/' + this.deleteId[j])
+                .then((res) => {
+                    this.$router.push("/MyQuizes");
+                }).catch((error) => console.log(error));
+        },
+        postQuestionsOnEdit(i) {
+            axios.post('questions', {
+                question: this.editedQuestions[i].question,
+                correctAnswer: this.editedQuestions[i].correctAnswer,
+                answer2: this.editedQuestions[i].answer2,
+                answer3: this.editedQuestions[i].answer3,
+                answer4: this.editedQuestions[i].answer4,
+            }).catch((error) => console.log(error));
+        },
         editQuiz() {
             if (this.validateForm) {
                 let quizData = new FormData();
@@ -189,6 +216,7 @@ export default {
                 quizData.append('text', this.quiz[0].text);
                 quizData.append('file', this.selectedFile);
 
+                //doet niet 
                 axios.post("quizes/" + this.id, quizData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -199,25 +227,13 @@ export default {
                         for (let i = 0; i <= this.editedQuestions.length; i++) {
 
                             if (this.editedQuestions.length < i) {
+                                this.putQuestionsOnEdit(i);
 
-                                axios.put('questions/' + this.editedQuestions[i].id, {
-                                    id: this.editedQuestions[i].id,
-                                    question: this.editedQuestions[i].question,
-                                    correctAnswer: this.editedQuestions[i].correctAnswer,
-                                    answer2: this.editedQuestions[i].answer2,
-                                    answer3: this.editedQuestions[i].answer3,
-                                    answer4: this.editedQuestions[i].answer4,
-                                }).then((res) => {
-                                    this.$router.push("/MyQuizes");
-                                }).catch((error) => console.log(error));
                             }
                             else {
                                 for (let j = 0; j < this.deleteId.length; j++) {
 
-                                    axios.delete('questionsOnId/' + this.deleteId[j])
-                                        .then((res) => {
-                                            this.$router.push("/MyQuizes");
-                                        }).catch((error) => console.log(error));
+                                    this.deleteQuestionOnEdit(j);
                                 }
 
                             }
@@ -226,25 +242,10 @@ export default {
                         for (let i = 0; i < this.editedQuestions.length; i++) {
 
                             if (i < this.length) {
-                                axios.put('questions/' + this.editedQuestions[i].id, {
-                                    id: this.editedQuestions[i].id,
-                                    question: this.editedQuestions[i].question,
-                                    correctAnswer: this.editedQuestions[i].correctAnswer,
-                                    answer2: this.editedQuestions[i].answer2,
-                                    answer3: this.editedQuestions[i].answer3,
-                                    answer4: this.editedQuestions[i].answer4,
-                                }).then((res) => {
-                                    this.$router.push("/MyQuizes");
-                                }).catch((error) => console.log(error));
+                                this.putQuestionsOnEdit(i);
                             }
                             else {
-                                axios.post('questions', {
-                                    question: this.editedQuestions[i].question,
-                                    correctAnswer: this.editedQuestions[i].correctAnswer,
-                                    answer2: this.editedQuestions[i].answer2,
-                                    answer3: this.editedQuestions[i].answer3,
-                                    answer4: this.editedQuestions[i].answer4,
-                                }).catch((error) => console.log(error));
+                                this.postQuestionsOnEdit(i);
                             }
                         }
                     }
