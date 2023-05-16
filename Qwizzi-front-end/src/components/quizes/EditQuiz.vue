@@ -139,26 +139,26 @@ export default {
             }).catch((error) => console.log(error));
     },
     methods: {
-        // validateForm() {
-        //     if (!this.title || !this.text) {
-        //         alert('You did not fill out al quiz fields. Please do so!');
-        //         return false;
-        //     }
+        validateForm() {
+            if (!this.title || !this.text) {
+                alert('You did not fill out al quiz fields. Please do so!');
+                return false;
+            }
 
-        //     if (!this.selectedFile) {
-        //         alert('You did not upload an image. Please do so!');
-        //         return false;
-        //     }
+            if (!this.selectedFile) {
+                alert('You did not upload an image. Please do so!');
+                return false;
+            }
 
-        //     for (const quest of this.questions) {
-        //         if (!quest.question || !quest.correctAnswer || !quest.answer2 || !quest.answer3 || !quest.answer4) {
-        //             alert('You did not fill out all question fields. Please do so!');
-        //             return false;
-        //         }
-        //     }
+            for (const quest of this.questions) {
+                if (!quest.question || !quest.correctAnswer || !quest.answer2 || !quest.answer3 || !quest.answer4) {
+                    alert('You did not fill out all question fields. Please do so!');
+                    return false;
+                }
+            }
 
-        //     return true;
-        // },
+            return true;
+        },
         addQuestion() {
             this.editedQuestions.push({
                 question: '',
@@ -183,6 +183,7 @@ export default {
             reader.readAsDataURL(this.selectedFile);
         },
         editQuiz() {
+            if (this.validateForm) {
                 let quizData = new FormData();
                 quizData.append('title', this.quiz[0].title);
                 quizData.append('text', this.quiz[0].text);
@@ -249,7 +250,8 @@ export default {
                     }
                     this.$router.push("/MyQuizes");
                 }).catch((error) => console.log(error));
-        },
+            }
+        }
     },
 };
 </script>
