@@ -50,9 +50,15 @@ class QuizRepository extends Repository
     public function editQuiz($quiz, $id)
     {
         try {
-            $stmt = $this->connection->prepare("UPDATE Quizes 
+            if ($quiz->image == "") {
+                $stmt = $this->connection->prepare("UPDATE Quizes 
+            SET title = ?, text = ? WHERE id = ?");
+                $stmt->execute([$quiz->title, $quiz->text, $id]);
+            } else {
+                $stmt = $this->connection->prepare("UPDATE Quizes 
             SET image = ?, title = ?, text = ? WHERE id = ?");
-            $stmt->execute([$quiz->image, $quiz->title, $quiz->text, $id]);
+                $stmt->execute([$quiz->image, $quiz->title, $quiz->text, $id]);
+            }
         } catch (PDOException $e) {
             echo $e;
         }
@@ -71,7 +77,7 @@ class QuizRepository extends Repository
             echo $e;
         }
     }
-    
+
     function createQuiz($quiz)
     {
         $stmt = $this->connection->prepare("INSERT INTO Quizes (userId, image, title, text) 
@@ -83,12 +89,12 @@ class QuizRepository extends Repository
     {
         return 'data:image/png;base64,' . base64_encode($imageData);
     }
-    
-    public function getAllImagesBase64($quizes){
+
+    public function getAllImagesBase64($quizes)
+    {
 
         foreach ($quizes as $q) {
             $q->image = $this->getImageBase64($q->image);
         }
     }
-
 }

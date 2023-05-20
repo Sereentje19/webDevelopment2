@@ -64,7 +64,13 @@ class QuizController extends Controller
     private function getQuizInfo($quiz)
     {
         try {
-            $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
+            if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+                $quiz->image = file_get_contents($_FILES['file']['tmp_name']);
+            } 
+            else{
+                $quiz->image = "";
+            }
+            
             $quiz->text = htmlspecialchars($_POST['text']);
             $quiz->title = htmlspecialchars($_POST['title']);
             return $quiz;

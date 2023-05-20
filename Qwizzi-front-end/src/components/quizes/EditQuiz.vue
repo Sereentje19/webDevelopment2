@@ -116,14 +116,17 @@ export default {
             ],
             quiz: [
                 {
+                    id: 0,
                     title: '',
-                    text: ''
+                    text: '',
+                    image: ''
                 }
             ],
             deleteId: [],
         }
     },
     mounted() {
+
         axios
             .get('quizes/' + this.id)
             .then((res) => {
@@ -140,18 +143,16 @@ export default {
     },
     methods: {
         validateForm() {
-            if (!this.title || !this.text) {
+
+            if (!this.quiz[0].title || !this.quiz[0].text) {
+                console.log("bad")
                 alert('You did not fill out al quiz fields. Please do so!');
                 return false;
             }
 
-            if (!this.selectedFile) {
-                alert('You did not upload an image. Please do so!');
-                return false;
-            }
-
-            for (const quest of this.questions) {
+            for (const quest of this.editedQuestions) {
                 if (!quest.question || !quest.correctAnswer || !quest.answer2 || !quest.answer3 || !quest.answer4) {
+                console.log("bad2")
                     alert('You did not fill out all question fields. Please do so!');
                     return false;
                 }
@@ -210,51 +211,49 @@ export default {
             }).catch((error) => console.log(error));
         },
         editQuiz() {
-            // if (this.validateForm) {
-            let quizData = new FormData();
-            quizData.append('title', this.quiz[0].title);
-            quizData.append('text', this.quiz[0].text);
-            quizData.append('file', this.selectedFile);
+            if (this.validateForm()) {
+                let quizData = new FormData();
+                quizData.append('title', this.quiz[0].title);
+                quizData.append('text', this.quiz[0].text);
+                quizData.append('file', this.selectedFile);
 
-            //als je eerst delete en dan toevoegd dan pakt die de toegevoegde questions niet
-            //doet niet 
-            axios.post("quizes/" + this.id, quizData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then((res) => {
-                let index = 0;
-                if (this.editedQuestions.length <= this.length) {
-                    for (let i = 0; i < this.editedQuestions.length; i++) {
-
-                        if (this.editedQuestions[i].id == undefined) {
-                            this.editedQuestions[i].id = this.deleteId[index];
-                            this.deleteId.splice(0, 1);
-                            index++;
-                        }
-
-                        this.putQuestionsOnEdit(i);
-
+                axios.post("quizes/" + this.id, quizData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
-                    for (let j = 0; j < this.deleteId.length; j++) {
-                        this.deleteQuestionOnEdit(j);
-                        console.log(this.deleteId[j])
-                    }
-                }
-                else if (this.editedQuestions.length > this.length) {
-                    for (let i = 0; i < this.editedQuestions.length; i++) {
-                        console.log("bla2")
-                        if (i < this.length) {
+                }).then((res) => {
+                    let index = 0;
+                    if (this.editedQuestions.length <= this.length) {
+                        for (let i = 0; i < this.editedQuestions.length; i++) {
+
+                            if (this.editedQuestions[i].id == undefined) {
+                                this.editedQuestions[i].id = this.deleteId[index];
+                                this.deleteId.splice(0, 1);
+                                index++;
+                            }
+
                             this.putQuestionsOnEdit(i);
+
                         }
-                        else {
-                            this.postQuestionsOnEdit(i);
+                        for (let j = 0; j < this.deleteId.length; j++) {
+                            this.deleteQuestionOnEdit(j);
+                            console.log(this.deleteId[j])
                         }
                     }
-                }
-                this.$router.push("/MyQuizes");
-            }).catch((error) => console.log(error));
-            // }
+                    else if (this.editedQuestions.length > this.length) {
+                        for (let i = 0; i < this.editedQuestions.length; i++) {
+                            console.log("bla2")
+                            if (i < this.length) {
+                                this.putQuestionsOnEdit(i);
+                            }
+                            else {
+                                this.postQuestionsOnEdit(i);
+                            }
+                        }
+                    }
+                    this.$router.push("/MyQuizes");
+                }).catch((error) => console.log(error));
+            }
         }
     },
 };
