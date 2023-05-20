@@ -2,8 +2,6 @@
 #playBtn {
     font-size: 35px;
     align-self: flex-start;
-    bottom: 35px;
-    position: absolute;
 }
 
 #image {
@@ -24,6 +22,5 @@
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    min-height: 400px;
-    position: relative;
+    justify-content: space-between;
 }

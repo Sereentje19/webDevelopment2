@@ -5,8 +5,10 @@
         <div id="quizOverviewContainer" v-for="q in quiz">
             <img id="image" :src="q.image" alt="Image is not shown"><br>
             <div id="infoQuiz">
-                <h1>{{ q.title }}</h1>
+                <div>
+                    <h1>{{ q.title }}</h1>
                 <p> {{ q.text }}</p>
+                </div>
                 <a @click="goToQuiz(q.id)" id="playBtn" class="mainButton btn">Play</a>
             </div>
         </div>
